@@ -4,15 +4,6 @@ import { routeConfig } from 'shared/config/routeConfig/routeConfig';
 import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
 
 const RouterProvider = () => {
-	// const isAuth = useSelector(getUserAuthData);
-	//
-	// const routes = useMemo(() => Object.values(routeConfig).filter((route) => {
-	// 	if (route.authOnly && !isAuth) {
-	// 		return false;
-	// 	}
-	// 	return true;
-	// }), [isAuth]);
-
 	return (
 		<Routes>
 			{Object.values(routeConfig).map(({ element, path }) => (
@@ -21,9 +12,9 @@ const RouterProvider = () => {
 					path={path}
 					element={(
 						<Suspense fallback={<PageLoader />}>
-							<div className="page-wrapper">
+							<section className="page-wrapper">
 								{element}
-							</div>
+							</section>
 						</Suspense>
 					)}
 				/>

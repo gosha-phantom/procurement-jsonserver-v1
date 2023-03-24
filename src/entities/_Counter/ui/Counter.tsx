@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { counterActions, getCounterValue } from 'entities/_Counter';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import { Loader, PageLoader } from 'shared/ui';
 import classes from './Counter.module.scss';
 
 export const Counter = () => {
+	const [loading, setLoading] = useState<boolean>(false);
 	const dispatch = useDispatch();
 	const counterValue = useSelector(getCounterValue);
 
@@ -14,6 +16,10 @@ export const Counter = () => {
 	const decrement = useCallback(() => {
 		dispatch(counterActions.decrement());
 	}, [dispatch]);
+
+	if (loading) {
+		return <PageLoader />;
+	}
 
 	return (
 		<div className={classes.counter}>

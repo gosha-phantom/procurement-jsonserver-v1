@@ -1,10 +1,183 @@
 {
-    "todos": [
-        { "id": 1, "title": "tot 1", "completed": false, "userId": 1 },
-        { "id": 2, "title": "tot 2", "completed": false, "userId": 1 },
-        { "id": 3, "title": "tot 3", "completed": true, "userId": 1 }
+    "user": [
+        {
+            "id": 1,
+            "firstName": "Ivan",
+            "lastName": "Ivanov",
+            "login": "ivanov",
+            "password": "123",
+            "userRoleID": 3
+        },
+        {
+            "id": 2,
+            "firstName": "Petr",
+            "lastName": "Petrov",
+            "login": "petrov",
+            "password": "123",
+            "userRoleID": 3
+        },
+        {
+            "id": 3,
+            "firstName": "Andrey",
+            "lastName": "Sidorov",
+            "login": "sidorov",
+            "password": "123",
+            "userRoleID": 2
+        },
+        {
+            "id": 4,
+            "firstName": "Aleksandr",
+            "lastName": "Pavlov",
+            "login": "pavlov",
+            "password": "123",
+            "userRoleID": 3
+        },
+        {
+            "id": 5,
+            "firstName": "Dmitriy",
+            "lastName": "Lazarev",
+            "login": "lazarev",
+            "password": "123",
+            "userRoleID": 3
+        },
+        {
+            "id": 6,
+            "firstName": "Admin",
+            "lastName": "Admin",
+            "login": "admin",
+            "password": "123",
+            "userRoleID": 1
+        }
     ],
-    "users": [
-        { "id": 1, "firstName": "Ivan", "lastName": "Ivanov", "login": "ivanov", "password": "123" }
+    "procOrder": [
+        {
+            "id": 1,
+            "userID": 1,
+            "title": "Order 1",
+            "dateCreated": "24.03.2023",
+            "dateNeed": "05.04.2023",
+            "project": "Project 1",
+            "description": "Description order 1",
+            "stateID": 1,
+            "warehouseID": 1,
+            "purchaserID": 3
+        },
+        {
+            "id": 2,
+            "userID": 2,
+            "title": "Order 2",
+            "dateCreated": "24.03.2023",
+            "dateNeed": "31.03.2023",
+            "project": "Project 2",
+            "description": "Description order 2",
+            "stateID": 1,
+            "warehouseID": 1,
+            "purchaserID": 3
+        },
+        {
+            "id": 3,
+            "userID": 1,
+            "title": "Order 3",
+            "dateCreated": "24.03.2023",
+            "dateNeed": "10.04.2023",
+            "project": "Project 1",
+            "description": "Description order 3",
+            "stateID": 1,
+            "warehouseID": 1,
+            "purchaserID": 3
+        }
+    ],
+    "procOrderProduct": [
+        {
+            "id": 1,
+            "procOrderID": 1,
+            "title": "Product 1",
+            "params": "",
+            "measureID": 1,
+            "quantity": 2,
+            "article": "article1",
+            "hyperlinkID": 1
+        },
+        {
+            "id": 2,
+            "procOrderID": 1,
+            "title": "Product 2",
+            "params": "Param 1, param 2",
+            "measureID": 1,
+            "quantity": 100,
+            "article": "",
+            "hyperlinkID": null
+        },
+        {
+            "id": 3,
+            "procOrderID": 2,
+            "title": "Product 3",
+            "params": "Param 1",
+            "measureID": 1,
+            "quantity": 15,
+            "article": "",
+            "hyperlinkID": null
+        },
+        {
+            "id": 4,
+            "procOrderID": 3,
+            "title": "Product 4",
+            "params": "Param 1",
+            "measureID": 1,
+            "quantity": 1,
+            "article": "article1",
+            "hyperlinkID": 2
+        },
+        {
+            "id": 5,
+            "procOrderID": 3,
+            "title": "Product 5",
+            "params": "Param 1, param 2",
+            "measureID": 1,
+            "quantity": 3,
+            "article": "article2",
+            "hyperlinkID": 3
+        },
+        {
+            "id": 6,
+            "procOrderID": 3,
+            "title": "Product 6",
+            "params": "",
+            "measureID": 2,
+            "quantity": 10,
+            "article": "article3",
+            "hyperlinkID": 4
+        }
+    ],
+    "procOrderState": [
+        { "id": 1, "key": "newOrder", "title": "Новая заявка" },
+        { "id": 2, "key": "inProcess", "title": "В обработке" },
+        { "id": 3, "key": "agreed", "title": "Согласовано" },
+        { "id": 4, "key": "paid", "title": "Оплачено" },
+        { "id": 5, "key": "received", "title": "Получено" },
+        { "id": 6, "key": "rejected", "title": "Отклонено" }
+    ],
+    "warehouse": [
+        { "id":  1, "key": "klimovskWorkshop","title": "Производство Климовск", "shortTitle": "klmprod" },
+        { "id":  2, "key": "centralOffice","title": "Центральный офис", "shortTitle": "office" }
+    ],
+    "userRole": [
+        { "id": 1, "key": "admin", "title": "Администратор" },
+        { "id": 2, "key": "purchaser", "title": "Специалист по закупкам" },
+        { "id": 3, "key": "user", "title": "Пользователь" }
+    ],
+    "measure": [
+        { "id": 1, "title": "шт", "description": "Штука" },
+        { "id": 2, "title": "кг", "description": "Килограмм" },
+        { "id": 3, "title": "мм", "description": "Миллиметр" },
+        { "id": 4, "title": "м2", "description": "Квадратный метр" },
+        { "id": 5, "title": "м3", "description": "Кубический метр" },
+        { "id": 6, "title": "л", "description": "Литр" }
+    ],
+    "hyperlink": [
+        { "id": 1, "text": "Link", "link": "https://www.vseinstrumenti.ru/product/rejsmusovyj-stanok-gigant-tpj-320-1600-1102414/" },
+        { "id": 2, "text": "Link", "link": "https://www.vseinstrumenti.ru/product/nabor-otvertok-i-bit-hoegert-technik-114-pr-stal-s2-ht1s099-1786402/" },
+        { "id": 3, "text": "Link", "link": "https://www.vseinstrumenti.ru/product/metalloplastikovyj-yaschik-dlya-instrumentov-20-inforce-06-20-08-1070529/" },
+        { "id": 4, "text": "Link", "link": "https://www.vseinstrumenti.ru/product/izopropilovyj-spirt-ners-butylka-1-l-pet-100006-1800476/" }
     ]
 }
