@@ -1,9 +1,8 @@
 .MainPage {
-    max-width: var(--width-small);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
 }
 .buttons {
     display: flex;

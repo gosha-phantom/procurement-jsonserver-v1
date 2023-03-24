@@ -1,5 +1,5 @@
 :root {
-    --font-family-main: 'Noto Sans', sans-serif;
+    --font-family-main: 'Open Sans', sans-serif;
 
     --font-size-small: 0.5rem;
     --font-size-medium: 1rem;
@@ -19,12 +19,17 @@
     --primary-color: #3A2e50;
     --secondary-color: #202537;
 
-    --inverted-primary-color: #f4f4fb;
+    --inverted-primary-color: #dbdbde;
 
-    --red-color: #c73131;
+    --red-color: #ff0000;
 
     --width-small: 500px;
     --width-medium: 700px;
     --width-large: 900px;
     --width-extras-large: 1200px;
+
+    --navbar-height: 3rem;
+
+    --sidebar-width: 20rem;
+    --sidebar-width-collapsed: 4rem;
 }

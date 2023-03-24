@@ -1,0 +1,29 @@
+.SidebarMain {
+    width: var(--sidebar-width);
+    background: var(--inverted-primary-color);
+    color: var(--primary-color);
+    position: relative;
+    transition: 0.3s width;
+    padding-left: 1rem;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+}
+
+.collapseBtn {
+    transition: 0.3s rotate;
+    margin-bottom: 1rem;
+    //position: absolute;
+}
+.collapsed {
+    width: var(--sidebar-width-collapsed);
+
+    .collapseBtn {
+        rotate: 180deg;
+        transition: 0.3s rotate;
+    }
+}
+
+
