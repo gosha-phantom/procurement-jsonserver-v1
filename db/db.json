@@ -1,0 +1,10 @@
+{
+    "todos": [
+        { "id": 1, "title": "tot 1", "completed": false, "userId": 1 },
+        { "id": 2, "title": "tot 2", "completed": false, "userId": 1 },
+        { "id": 3, "title": "tot 3", "completed": true, "userId": 1 }
+    ],
+    "users": [
+        { "id": 1, "firstName": "Ivan", "lastName": "Ivanov", "login": "ivanov", "password": "123" }
+    ]
+}

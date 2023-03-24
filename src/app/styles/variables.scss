@@ -1,0 +1,30 @@
+:root {
+    --font-family-main: 'Noto Sans', sans-serif;
+
+    --font-size-small: 0.5rem;
+    --font-size-medium: 1rem;
+    --font-size-large: 1.5rem;
+    --font-size-extra-large: 2rem;
+
+    --font-line-small: 1rem;
+    --font-line-medium: 1.5rem;
+    --font-line-large: 2rem;
+    --font-line-extra-large: 2.5rem;
+
+    --font-small: var(--font-size-small) / var(--font-line-small) var(--font-family-main);
+    --font-medium: var(--font-size-medium) / var(--font-line-medium) var(--font-family-main);
+    --font-large: var(--font-size-large) / var(--font-line-large) var(--font-family-main);
+    --font-extra-large: var(--font-size-extra-large) / var(--font-line-extra-large) var(--font-family-main);
+
+    --primary-color: #3A2e50;
+    --secondary-color: #202537;
+
+    --inverted-primary-color: #f4f4fb;
+
+    --red-color: #c73131;
+
+    --width-small: 500px;
+    --width-medium: 700px;
+    --width-large: 900px;
+    --width-extras-large: 1200px;
+}
