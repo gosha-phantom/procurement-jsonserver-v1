@@ -1,0 +1,25 @@
+.table {
+    border: 2px solid var(--primary-color);
+}
+
+.tr {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.th {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.table-data-left {
+    text-align: left;
+}
+
+.table-data-center {
+    text-align: center;
+}
+
+.table-data-right {
+    text-align: right;
+}
