@@ -1,16 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { counterReducer } from 'entities/_Counter';
+import { usersReducer } from 'entities/Users';
+import { procOrdersReducer } from 'entities/ProcOrders';
 
-export function createReduxStore(initialState?: StateSchema) {
+export const store = configureStore<StateSchema>({
+	reducer: {
+		counter: counterReducer,
+		users: usersReducer,
+		procOrders: procOrdersReducer,
+	},
+	devTools: true,
+});
 
-	return configureStore<StateSchema>({
-		reducer: {
-			counter: counterReducer,
-		},
-		preloadedState: initialState,
-		devTools: true,
-	});
-}
-
-export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
+export type AppDispatch = typeof store.dispatch;
