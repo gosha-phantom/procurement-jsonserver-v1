@@ -1,15 +1,24 @@
-.table {
+table {
     border: 2px solid var(--primary-color);
 }
 
-.tr {
+th, td {
+    border-right: 1px solid var(--primary-color);
     border-bottom: 1px solid var(--primary-color);
+    padding: 0.25rem;
 }
 
-.th {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+//.td {
+//    text-align: center;
+//}
+
+th:last-child,
+td:last-child {
+    border-right: none;
+}
+
+tr:last-child {
+    border-bottom: none;
 }
 
 .table-data-left {

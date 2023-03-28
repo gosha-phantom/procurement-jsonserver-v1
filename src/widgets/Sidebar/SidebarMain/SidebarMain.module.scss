@@ -1,10 +1,12 @@
 .SidebarMain {
-    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    height: calc(100vh - var(--navbar-height));
     background: var(--inverted-primary-color);
     color: var(--primary-color);
     position: relative;
-    transition: 0.3s width;
+    transition: 0.3s min-width;
     padding-left: 1rem;
+    display: block;
 }
 
 .items {
@@ -18,7 +20,7 @@
     //position: absolute;
 }
 .collapsed {
-    width: var(--sidebar-width-collapsed);
+    min-width: var(--sidebar-width-collapsed);
 
     .collapseBtn {
         rotate: 180deg;

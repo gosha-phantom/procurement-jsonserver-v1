@@ -7,7 +7,7 @@ export interface TableHeaders {
 }
 
 export enum TableDataAlign {
-    LEFT = 'text-left',
-    CENTER = 'text-center',
-    RIGHT = 'text-right',
+    LEFT = 'table-data-left',
+    CENTER = 'table-data-center',
+    RIGHT = 'table-data-right',
 }

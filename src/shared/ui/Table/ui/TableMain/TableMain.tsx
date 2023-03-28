@@ -1,46 +1,47 @@
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { TableHeaders } from '../../model/table.types';
-import classes from './TableMain.module.scss';
+import { TableHeaders, TableDataAlign } from '../../model/table.types';
+import './TableMain.module.scss';
 
 interface TableMainProps {
     className?: string;
     headers: TableHeaders[];
-    data?: never[];
+    data?: any[];
+    textAlign?: TableDataAlign;
 }
 
 export const TableMain = memo((props: TableMainProps) => {
 	const {
-		className, headers, data
+		className, headers, data, textAlign
 	} = props;
 
 	if (!data) {
 		return (
-			<div className={classNames(classes.table, {}, [className])}>
+			<div className={classNames('table', {}, [className])}>
 				Нет данных...
 			</div>
 		);
 	}
 
 	return (
-		<table className={classNames(classes.table, {}, [className])}>
+		<table className={classNames('table', {}, [className])}>
 			<thead>
-				<tr className={classes.tr}>
+				<tr>
 					{headers && headers.map(header => (
-						<th className={classes.th} key={header.key}>
+						<th key={header.key}>
 							<div>{header.value}</div>
-							<div>Filter...</div>
+							{/*<div>Filter...</div>*/}
 						</th>
 					))}
 				</tr>
 			</thead>
 			<tbody>
 				{data && data.map((row, index) => (
-					<tr key={index} className={classes.tr}>
+					<tr key={index} >
 						{headers && headers.map(header => (
 							<td
 								key={header.key}
-								className={classNames(classes.td, { [classes[header.textAlign]]: true }, [])}
+								className={`td ${header.textAlign}`}
 							>{row[header.key]}</td>
 						))}
 					</tr>
