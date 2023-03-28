@@ -1,6 +1,6 @@
-import { memo } from 'react';
+import { memo, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { TableHeaders, TableDataAlign } from '../../model/table.types';
+import { TableHeaders, TableDataAlign, TableDataTextSize } from '../../model/table.types';
 import './TableMain.module.scss';
 
 interface TableMainProps {
@@ -8,11 +8,15 @@ interface TableMainProps {
     headers: TableHeaders[];
     data?: any[];
     textAlign?: TableDataAlign;
+    textSize?: TableDataTextSize;
+    tdRow?: ReactNode;
 }
 
 export const TableMain = memo((props: TableMainProps) => {
 	const {
-		className, headers, data, textAlign
+		className, headers, data, tdRow,
+		textAlign = TableDataAlign.LEFT,
+		textSize = TableDataTextSize.MEDIUM,
 	} = props;
 
 	if (!data) {

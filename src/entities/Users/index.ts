@@ -5,4 +5,5 @@ export { getUsers } from './model/users.services';
 export { usersReducer, usersActions } from './model/users.slice';
 
 export { selectUsersIsLoading, selectUsersError } from './model/users.selectors';
-export { selectUsers } from './model/users.slice';
+export { selectUsersAll, selectUserById } from './model/users.selectors';
+// export { selectUsers } from './model/users.slice';

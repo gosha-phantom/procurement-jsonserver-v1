@@ -32,3 +32,19 @@ tr:last-child {
 .table-data-right {
     text-align: right;
 }
+
+.table-data-text-size-small {
+    font: var(--font-small);
+}
+
+.table-data-text-size-medium {
+    font: var(--font-medium);
+}
+
+.table-data-text-size-large {
+    font: var(--font-large);
+}
+
+.table-data-text-size-xl {
+    font: var(--font-extra-large);
+}

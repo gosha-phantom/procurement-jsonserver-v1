@@ -1,10 +1,11 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { UsersSchema, UserType } from 'entities/Users';
+import { UsersSchema, UserType } from './users.types';
 import { getUsers } from './users.services';
 
 const usersAdapter = createEntityAdapter<UserType>({
 	selectId: (user) => user.id,
+	sortComparer: (a, b) => a.id.toString().localeCompare(b.id.toString()),
 });
 
 export const selectUsers = usersAdapter.getSelectors<StateSchema>(

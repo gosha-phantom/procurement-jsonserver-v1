@@ -1,14 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { counterReducer } from 'entities/_Counter';
+import { procOrderStatusReducer } from 'entities/ProcOrderStatus';
 import { usersReducer } from 'entities/Users';
 import { procOrdersReducer } from 'entities/ProcOrders';
+import { warehousesReducer } from 'entities/Warehouse';
 
 export const store = configureStore<StateSchema>({
 	reducer: {
 		counter: counterReducer,
 		users: usersReducer,
 		procOrders: procOrdersReducer,
+		warehouses: warehousesReducer,
+		procOrderStatus: procOrderStatusReducer,
 	},
 	devTools: true,
 });
