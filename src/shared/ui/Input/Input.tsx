@@ -1,4 +1,4 @@
-import { memo, ReactHTMLElement } from 'react';
+import React, { memo, ReactHTMLElement } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { InputSize, InputTheme } from './Input.types';
 import classes from './Input.module.scss';
@@ -9,7 +9,7 @@ interface InputProps extends ReactHTMLElement<HTMLInputElement>{
     size?: InputSize;
     value?: string | number;
     placeholder?: string;
-    onChange(): void;
+    onChange?:(value: any) => void;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -26,13 +26,17 @@ export const Input = memo((props: InputProps) => {
 		[classes[size]]: true,
 	};
 
+	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+		onChange?.(e.target.value);
+	};
+
 	return (
 		<input
 			className={classNames(classes.Input, mods, [className])}
 			type={type}
 			value={value}
 			placeholder={placeholder}
-			onChange={onChange}
+			onChange={onChangeHandler}
 		/>
 	);
 });

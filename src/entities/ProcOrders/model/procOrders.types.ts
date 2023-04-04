@@ -17,3 +17,16 @@ export interface ProcOrderSchema extends EntityState<ProcOrder> {
     isLoading?: boolean;
     error?: string;
 }
+
+export interface ProcessedProcOrdersData {
+    id?: number;
+    user?: string;
+    title?: string;
+    project?: string;
+    dateCreated?: string;
+    dateNeed?: string;
+    status?: string;
+    warehouse?: string;
+    description?: string;
+    purchaser?: string;
+}

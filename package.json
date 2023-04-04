@@ -11,7 +11,10 @@
         "start:dev": "vite --host"
     },
     "dependencies": {
+        "@faker-js/faker": "^7.6.0",
         "@reduxjs/toolkit": "^1.9.3",
+        "@tanstack/match-sorter-utils": "^8.8.4",
+        "@tanstack/react-table": "^8.8.5",
         "axios": "^1.3.4",
         "concurrently": "^7.6.0",
         "react": "^18.2.0",

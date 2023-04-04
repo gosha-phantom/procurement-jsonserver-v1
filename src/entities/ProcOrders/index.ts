@@ -1,4 +1,4 @@
-export type { ProcOrder, ProcOrderSchema } from './model/procOrders.types';
+export type { ProcOrder, ProcOrderSchema, ProcessedProcOrdersData } from './model/procOrders.types';
 
 export { getProcOrders } from './model/procOrders.services';
 
