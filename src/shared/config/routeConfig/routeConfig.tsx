@@ -1,6 +1,6 @@
 import { RouteProps } from 'react-router-dom';
 import {
-	MainPage, ProcOrdersPage, ProcOrdersProductsPage, NotFoundPage,
+	MainPage, ProcOrdersPage, ProcOrdersProductsPage, NotFoundPage, TemplatePage,
 } from 'pages';
 
 export type AppRoutesProps = RouteProps & {
@@ -11,6 +11,7 @@ export enum AppRoutes {
     MAIN = 'main',
     PROC_ORDERS = 'proc_orders',
     PROC_ORDERS_PRODUCTS = 'proc_orders_products',
+    TEMPLATE = 'template',
     // last
     NOT_FOUND = 'not_found',
 }
@@ -19,6 +20,7 @@ export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.MAIN]: '/',
 	[AppRoutes.PROC_ORDERS]: '/procurementOrders',
 	[AppRoutes.PROC_ORDERS_PRODUCTS]: '/procurementOrdersProducts',
+	[AppRoutes.TEMPLATE]: '/template',
 	// последний
 	[AppRoutes.NOT_FOUND]: '*',
 };
@@ -35,6 +37,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.PROC_ORDERS_PRODUCTS]: {
 		path: RoutePath.proc_orders_products,
 		element: <ProcOrdersProductsPage />
+	},
+	[AppRoutes.TEMPLATE]: {
+		path: RoutePath.template,
+		element: <TemplatePage />
 	},
 	// last
 	[AppRoutes.NOT_FOUND]: {

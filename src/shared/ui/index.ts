@@ -10,3 +10,8 @@ export { Text, TextSize } from './Text/Text';
 export { TanstackTable } from './TanstackTable/TanstackTable';
 
 export { DebouncedInput } from './DebouncedInput/DebouncedInput';
+
+export {
+	BasicReactTable, SortingReactTable, GlobalFilterReactTable, ColumnFilterReactTable, PaginationReactTable,
+	RowSelectionReactTable, ColumnOrderReactTable, ColumnHidingReactTable,
+} from './ReactTable';

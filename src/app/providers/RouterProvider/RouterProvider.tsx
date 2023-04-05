@@ -12,9 +12,9 @@ const RouterProvider = () => {
 					path={path}
 					element={(
 						<Suspense fallback={<PageLoader />}>
-							<section className="page-wrapper">
+							<main className="page-wrapper">
 								{element}
-							</section>
+							</main>
 						</Suspense>
 					)}
 				/>

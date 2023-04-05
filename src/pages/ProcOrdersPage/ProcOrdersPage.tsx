@@ -13,7 +13,7 @@ const ProcOrdersPage = (props: ProcOrdersPageProps) => {
 
 	return (
 		<div className={classNames(classes.ProcOrdersPage, {}, [className])}>
-			<Text size={TextSize.LARGE}>Таблица заказов на закупку</Text>
+			{/*<Text size={TextSize.LARGE}>Таблица заказов на закупку</Text>*/}
 			<ProcOrdersTable />
 		</div>
 	);

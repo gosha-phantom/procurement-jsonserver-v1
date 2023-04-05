@@ -11,7 +11,7 @@ interface SidebarMainProps {
 
 export const SidebarMain = memo((props: SidebarMainProps) => {
 	const { className } = props;
-	const [collapsed, setCollapsed] = useState<boolean>(false);
+	const [collapsed, setCollapsed] = useState<boolean>(true);
 
 	const mods: Mods = {
 		[classes.collapsed]: collapsed

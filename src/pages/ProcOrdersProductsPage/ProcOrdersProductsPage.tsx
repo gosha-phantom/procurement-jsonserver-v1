@@ -11,7 +11,7 @@ const ProcOrdersProductsPage = (props: ProcOrdersProductsPageProps) => {
 
 	return (
 		<div className={classNames(classes.ProcOrdersProductsPage, {}, [className])}>
-            ProcOrdersProductsPage
+            Здесь будет таблица детализации заказов...
 		</div>
 	);
 };

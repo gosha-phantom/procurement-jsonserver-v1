@@ -4,7 +4,7 @@ import { RouterProvider } from 'app/providers';
 import { Navbar, Sidebar } from 'widgets';
 import { getUsers } from 'entities/Users';
 import { getWarehouses } from 'entities/Warehouse';
-import { useAppDispatch } from 'shared/lib/hooks/useAppdispatch';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import './styles/app.scss';
 
 function App() {
