@@ -1,33 +1,57 @@
-import React, { memo, ReactHTMLElement } from 'react';
+import React, { InputHTMLAttributes, useEffect } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import { InputSize, InputTheme } from './Input.types';
 import classes from './Input.module.scss';
 
-interface InputProps extends ReactHTMLElement<HTMLInputElement>{
-    className?: string;
-    theme?: InputTheme;
-    size?: InputSize;
-    value?: string | number;
-    placeholder?: string;
-    onChange?:(value: any) => void;
+export enum InputSizeTypes {
+    SMALL = 'size-small',
+    MEDIUM = 'size-medium',
+    LARGE = 'size-large'
 }
 
-export const Input = memo((props: InputProps) => {
+export enum InputThemeTypes {
+    CLEAR = 'theme-clear',
+    RED = 'theme-red',
+    NORMAL = 'theme-normal',
+    UNDERLINED = 'theme-underlined',
+    ROUNDED = 'theme-rounded',
+}
+
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly' | 'size'>
+
+export interface InputProps extends HTMLInputProps {
+    className?: string;
+    theme?: InputThemeTypes;
+    size?: InputSizeTypes;
+    value?: string | number;
+    onChange?:(value: any) => void;
+    delay?: number;
+}
+
+export const Input = (props: InputProps) => {
 	const {
-		className, value, placeholder, onChange,
+		className, value: initialValue, onChange,
 		type = 'text',
-		theme = InputTheme.NORMAL,
-		size = InputSize.MEDIUM,
+		theme = '',
+		size = InputSizeTypes.MEDIUM,
+		delay = 0,
 		...otherProps
 	} = props;
+
+	const [value, setValue] = React.useState(initialValue);
+
+	useEffect(() => {
+		setValue(initialValue);
+	}, [initialValue]);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			onChange?.(value);}, delay);
+		return () => clearTimeout(timeout);
+	}, [value, delay, onChange]);
 
 	const mods: Mods = {
 		[classes[theme]]: true,
 		[classes[size]]: true,
-	};
-
-	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		onChange?.(e.target.value);
 	};
 
 	return (
@@ -35,8 +59,8 @@ export const Input = memo((props: InputProps) => {
 			className={classNames(classes.Input, mods, [className])}
 			type={type}
 			value={value}
-			placeholder={placeholder}
-			onChange={onChangeHandler}
+			onChange={(e) => setValue(e.target.value)}
+			{...otherProps}
 		/>
 	);
-});
+};

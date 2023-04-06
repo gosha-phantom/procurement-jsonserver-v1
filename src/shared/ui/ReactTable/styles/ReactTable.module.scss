@@ -1,48 +1,48 @@
-table {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-table td, table th {
-    border: 1px solid var(--primary-color);
-    padding: 8px;
-}
-
-table tr:hover {
-    background-color: var(--inverted-primary-color);
-}
-
-table th, tfoot td {
-    text-align: left;
-    background-color: var(--inverted-primary-color);
-    color: var(--primary-color);
-}
-
-table th div div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-table th div span {
-    padding-left: 0.25rem;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-div span input {
-    width: 50px;
-}
-
-div select {
-    width: 100px;
-}
-
-button {
-    padding: 0.25rem 0.5rem;
-}
+//table {
+//    font-family: Arial, Helvetica, sans-serif;
+//    border-collapse: collapse;
+//    width: 100%;
+//}
+//
+//table td, table th {
+//    border: 1px solid var(--primary-color);
+//    padding: 8px;
+//}
+//
+//table tr:hover {
+//    background-color: var(--inverted-primary-color);
+//}
+//
+//table th, tfoot td {
+//    text-align: left;
+//    background-color: var(--inverted-primary-color);
+//    color: var(--primary-color);
+//}
+//
+//table th div div {
+//    display: flex;
+//    justify-content: center;
+//    align-items: center;
+//}
+//
+//table th div span {
+//    padding-left: 0.25rem;
+//}
+//
+//.container {
+//    display: flex;
+//    flex-direction: column;
+//    gap: 1rem;
+//}
+//
+//div span input {
+//    width: 50px;
+//}
+//
+//div select {
+//    width: 100px;
+//}
+//
+//button {
+//    padding: 0.25rem 0.5rem;
+//}

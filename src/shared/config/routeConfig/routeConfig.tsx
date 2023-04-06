@@ -1,6 +1,6 @@
 import { RouteProps } from 'react-router-dom';
 import {
-	MainPage, ProcOrdersPage, ProcOrdersProductsPage, NotFoundPage, TemplatePage,
+	MainPage, ProcOrdersPage, ProcOrdersProductsPage, NotFoundPage, TemplatePage, TemplatePage2
 } from 'pages';
 
 export type AppRoutesProps = RouteProps & {
@@ -40,7 +40,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	},
 	[AppRoutes.TEMPLATE]: {
 		path: RoutePath.template,
-		element: <TemplatePage />
+		element: <TemplatePage2 />
 	},
 	// last
 	[AppRoutes.NOT_FOUND]: {

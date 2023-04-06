@@ -1,3 +1,38 @@
 .Input {
+    padding: 0 0.25rem;
+}
+.theme-clear, .theme-underlined {
+    border: none;
+    background: none;
+    outline: none;
+}
 
+.theme-underlined {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.theme-rounded {
+    border: 1px solid var(--primary-color);
+    border-radius: 0.25rem;
+}
+
+.theme-red {
+    color: var(--red-color);
+    border: 1px solid var(--red-color);
+}
+
+.size-small {
+    font: var(--font-small);
+}
+
+.size-medium {
+    font: var(--font-medium);
+}
+
+.size-large {
+    font: var(--font-large);
+}
+
+.Input::placeholder {
+    font-style: italic;
 }

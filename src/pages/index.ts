@@ -4,3 +4,4 @@ export { ProcOrdersProductsPageAsync as ProcOrdersProductsPage } from './ProcOrd
 export { NotFoundPage } from './NotFoundPage/NotFoundPage';
 
 export { TemplatePageAsync as TemplatePage } from './TemplatePage/TemplatePage.async';
+export { TemplatePage2Async as TemplatePage2 } from './TemplatePage2/TemplatePage2.async';
