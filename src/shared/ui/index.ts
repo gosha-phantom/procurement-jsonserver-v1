@@ -3,7 +3,11 @@ export { PageLoader } from './PageLoader/PageLoader';
 export { AppLink, AppLinkTheme } from './AppLink/AppLink';
 
 export { Text, TextSize } from './Text/Text';
-export { Input, InputThemeTypes, InputSizeTypes } from './Input/Input';
+export { Input, InputThemeTypes, InputSizeTypes, InputBGColorTypes, InputTextAlignTypes } from './Input/Input';
+export {
+	SimpleInput, SimpleInputTextAlignTypes, SimpleInputBGColorTypes, SimpleInputSizeTypes, SimpleInputThemeTypes
+} from './Input/SimpleInput';
+export { Button, ButtonThemeTypes, ButtonSizeTypes } from './Button/Button';
 export { DebouncedInput } from './DebouncedInput/DebouncedInput';
 
 export { VStack, HStack } from './Stack';

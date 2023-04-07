@@ -25,6 +25,7 @@ export default defineConfig({
 			'widgets': path.resolve(__dirname, 'src', 'widgets'),
 			'features': path.resolve(__dirname, 'src', 'features'),
 			'entities': path.resolve(__dirname, 'src', 'entities'),
+			'react-table': path.resolve(__dirname, '../../../src/index.ts')
 		}
 	},
 	server: {

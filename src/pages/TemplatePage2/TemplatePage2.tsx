@@ -35,19 +35,21 @@ interface User {
 }
 
 const fetchUsers = async() => {
-	const response = axios.get<User[]>('https://jsonplaceholder.typicode.com/users');
-	return response;
+	return axios.get<User[]>('https://jsonplaceholder.typicode.com/users');
 };
 
 const TemplatePage2 = (props: TemplatePageProps) => {
 	const { className } = props;
 	const [data, setData] = useState<User[]>([]);
 
-	const tableColumns = useMemo<ColumnDef<User, any>[]>(() => [
+	const tableColumns: ColumnDef<User, unknown>[] = [
 		{
 			accessorKey: 'id',
+			header: 'ID',
 			cell: props => props.getValue(),
-			footer: props => props.column.id
+			footer: props => props.column.id,
+			enableSorting: true,
+			enableColumnFilter: false,
 		},
 		{
 			accessorFn: row => row.name,
@@ -84,11 +86,11 @@ const TemplatePage2 = (props: TemplatePageProps) => {
 			cell: props => props.getValue(),
 			footer: props => props.column.id
 		},
-	], []);
+	];
 
 
 	useEffect(() => {
-		const response = fetchUsers().then(({ data }) => setData(data));
+		fetchUsers().then(({ data }) => setData([...data, ...data, ...data, ...data, ...data]));
 	}, []);
 
 	return (

@@ -13,7 +13,7 @@
 
 .theme-rounded {
     border: 1px solid var(--primary-color);
-    border-radius: 0.25rem;
+    border-radius: var(--border-radius);
 }
 
 .theme-red {
@@ -35,4 +35,32 @@
 
 .Input::placeholder {
     font-style: italic;
+}
+
+.bg-color-none {
+    background: none;
+}
+
+.bg-color-white {
+    background: white;
+}
+
+.bg-color-primary {
+    background: var(--primary-color);
+}
+
+.bg-color-inverted {
+    background: var(--inverted-primary-color);
+}
+
+.text-align-start {
+    text-align: left;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-end {
+    text-align: right;
 }

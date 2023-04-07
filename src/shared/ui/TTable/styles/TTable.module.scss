@@ -40,9 +40,13 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    cursor: pointer;
+    //cursor: pointer;
 }
 
 .inputGlobalFilter {
     min-width: 15rem;
+}
+
+.w-5-rem {
+    width: 5rem;
 }

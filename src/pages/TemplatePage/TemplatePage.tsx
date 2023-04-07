@@ -5,14 +5,14 @@ import React, { memo } from 'react';
 // import { selectWarehousesAll } from 'entities/Warehouse';
 // import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ColumnHidingReactTable, Text, TextSize } from 'shared/ui';
-import {
-	Loader,
-	TableHeaders, TableDataAlign, Table,
-	TanstackTable,
-	BasicReactTable, SortingReactTable, GlobalFilterReactTable, ColumnFilterReactTable, PaginationReactTable,
-	RowSelectionReactTable, ColumnOrderReactTable
-} from 'shared/ui';
+import { Text, TextSize } from 'shared/ui';
+// import {
+// 	Loader,
+// 	TableHeaders, TableDataAlign, Table,
+// 	TanstackTable,
+// 	BasicReactTable, SortingReactTable, GlobalFilterReactTable, ColumnFilterReactTable, PaginationReactTable,
+// 	RowSelectionReactTable, ColumnOrderReactTable
+// } from 'shared/ui';
 // import { fuzzySort } from 'shared/ui/MyTanTable/MyTanTable.adds';
 // import { Person } from 'shared/ui/TanstackTable/makeData';
 // import { selectProcOrdersError, selectProcOrdersIsLoading } from '../model/procOrders.selectors';
@@ -179,7 +179,7 @@ const TemplatePage = (props: TemplatePageProps) => {
 			{/*<PaginationReactTable />*/}
 			{/*<RowSelectionReactTable />*/}
 			{/*<ColumnOrderReactTable />*/}
-			<ColumnHidingReactTable />
+			{/*<ColumnHidingReactTable />*/}
 		</div>
 	);
 };

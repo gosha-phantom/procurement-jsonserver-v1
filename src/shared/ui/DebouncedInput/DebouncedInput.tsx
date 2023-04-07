@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { SimpleInput, SimpleInputProps } from '../Input/SimpleInput';
 
 interface DebounceInputProps {
     value: string | number;
@@ -6,7 +7,8 @@ interface DebounceInputProps {
     delay?: number
 }
 
-type DebounceInputType = DebounceInputProps & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>
+// type DebounceInputType = DebounceInputProps & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>
+type DebounceInputType = DebounceInputProps & Omit<SimpleInputProps, 'onChange'>
 
 export const DebouncedInput = memo((props: DebounceInputType) => {
 	const {
@@ -25,9 +27,11 @@ export const DebouncedInput = memo((props: DebounceInputType) => {
 		}, delay);
 
 		return () => clearTimeout(timeout);
-	}, [value, delay, onChange]);
+		// НЕЛЬЗЯ добавлять onChange в зависимости,  иначе будет РЕРЕНДЕР ТАБЛИЦЫ!!
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [value, delay]);
 
 	return (
-		<input {...otherProps} value={value} onChange={e => setValue(e.target.value)}/>
+		<SimpleInput {...otherProps} value={value} onChange={e => setValue(e.target.value)}/>
 	);
 });
