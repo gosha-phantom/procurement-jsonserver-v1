@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
+import { StateSchema } from 'shared/config/stateConfig/StateSchema';
 import { counterReducer } from 'entities/_Counter';
 import { procOrderStatusReducer } from 'entities/ProcOrderStatus';
 import { usersReducer } from 'entities/Users';
@@ -9,10 +9,10 @@ import { warehousesReducer } from 'entities/Warehouse';
 export const store = configureStore<StateSchema>({
 	reducer: {
 		counter: counterReducer,
-		users: usersReducer,
+		// users: usersReducer,
 		procOrders: procOrdersReducer,
-		warehouses: warehousesReducer,
-		procOrderStatus: procOrderStatusReducer,
+		// warehouses: warehousesReducer,
+		// procOrderStatus: procOrderStatusReducer,
 	},
 	devTools: true,
 });

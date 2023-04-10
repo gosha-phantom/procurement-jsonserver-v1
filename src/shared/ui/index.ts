@@ -5,27 +5,15 @@ export { AppLink, AppLinkTheme } from './AppLink/AppLink';
 export { Text, TextSize } from './Text/Text';
 export { Input, InputThemeTypes, InputSizeTypes, InputBGColorTypes, InputTextAlignTypes } from './Input/Input';
 export {
-	SimpleInput, SimpleInputTextAlignTypes, SimpleInputBGColorTypes, SimpleInputSizeTypes, SimpleInputThemeTypes
+	SimpleInput, type SimpleInputProps,
+	SimpleInputTextAlignTypes, SimpleInputBGColorTypes, SimpleInputSizeTypes, SimpleInputThemeTypes
 } from './Input/SimpleInput';
+export { Select } from './Select/Select';
 export { Button, ButtonThemeTypes, ButtonSizeTypes } from './Button/Button';
 export { DebouncedInput } from './DebouncedInput/DebouncedInput';
 
 export { VStack, HStack } from './Stack';
 
 export {
-	TBasicTable, TSortAndFilterTable,
+	TBasicTable, Table, tableFuzzySort, tableFuzzyFilter
 } from './TTable';
-
-// export { Table, TableDataAlign, TableDataTextSize } from './Table';
-// export type { TableHeaders } from './Table';
-
-
-// export { TanstackTable } from './TanstackTable/TanstackTable';
-//
-// export { DebouncedInput } from './DebouncedInput/DebouncedInput';
-//
-// export {
-// 	BasicReactTable, SortingReactTable, GlobalFilterReactTable, ColumnFilterReactTable, PaginationReactTable,
-// 	RowSelectionReactTable, ColumnOrderReactTable, ColumnHidingReactTable,
-// } from './ReactTable';
-

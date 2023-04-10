@@ -1,10 +1,10 @@
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
+import { getProcOrders, getProcOrdersByUserID } from './procOrders.services';
 import { ProcOrder, ProcOrderSchema } from './procOrders.types';
-import { getProcOrders } from './procOrders.services';
 
 const procOrdersAdapter = createEntityAdapter<ProcOrder>({
-	selectId: (procOrder) => procOrder.id,
+	selectId: (procOrder) => procOrder.ID,
 });
 
 export const selectProcOrders = procOrdersAdapter.getSelectors<StateSchema>(
@@ -30,10 +30,26 @@ const procOrdersSlice = createSlice({
 				state.isLoading = false;
 				state.error = action.payload;
 			})
-			.addCase(getProcOrders.fulfilled, (state, action) => {
+			.addCase(getProcOrders.fulfilled, (state, action: PayloadAction<ProcOrder[]>) => {
 				state.isLoading = false;
-				procOrdersAdapter.addMany(state, action.payload);
+				procOrdersAdapter.setAll(state, action.payload);
+			})
+			.addCase(getProcOrdersByUserID.pending, (state) => {
+				state.isLoading = true;
+				state.error = undefined;
+			})
+			.addCase(getProcOrdersByUserID.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(getProcOrdersByUserID.fulfilled, (state, action: PayloadAction<ProcOrder[]>) => {
+				state.isLoading = false;
+				procOrdersAdapter.setAll(state, action.payload);
 			});
+		// temporary service for transforming data
+		// 	.addCase(getProcessedProcOrders.fulfilled, (state, action: PayloadAction<ProcessedProcOrdersData[]>) => {
+		// 		state.processedProcOrders = action.payload;
+		// 	});
 	},
 });
 

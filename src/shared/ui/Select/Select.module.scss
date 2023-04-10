@@ -1,0 +1,69 @@
+.select {
+    padding: 0 0.25rem;
+}
+
+.theme-clear, .theme-underlined {
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.theme-underlined {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.theme-rounded {
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+}
+
+.theme-red {
+    color: var(--red-color);
+    border: 1px solid var(--red-color);
+}
+
+.disabled {
+    opacity: var(--disabled-opacity);
+}
+
+.size-small {
+    font: var(--font-small);
+}
+
+.size-medium {
+    font: var(--font-medium);
+}
+
+.size-large {
+    font: var(--font-large);
+}
+
+.text-align-start {
+    text-align: left;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-end {
+    text-align: right;
+}
+
+.bg-color-none {
+    background: none;
+}
+
+.bg-color-white {
+    background: white;
+}
+
+.bg-color-primary {
+    background: var(--primary-color);
+}
+
+.bg-color-inverted {
+    background: var(--inverted-primary-color);
+}
+
+

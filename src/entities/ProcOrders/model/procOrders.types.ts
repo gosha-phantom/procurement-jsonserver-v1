@@ -1,32 +1,37 @@
 import { EntityState } from '@reduxjs/toolkit';
 
 export interface ProcOrder {
-    id: number;
-    userID: number;
+    user: string;
+    userID?: number;
+    ID: number;
     title: string;
-    dateCreated: string;
-    dateNeed: string;
-    project?: string;
-    description?: string;
-    stateID: number;
+    project: string;
+    dateCreated: Date;
+    dateNeed: Date;
+    statusID?: number;
+    status: string;
     warehouseID?: number;
+    warehouse: string;
+    description: string;
     purchaserID?: number;
+    purchaser: string;
 }
 
 export interface ProcOrderSchema extends EntityState<ProcOrder> {
     isLoading?: boolean;
     error?: string;
+    // processedProcOrders?: ProcessedProcOrdersData[]
 }
 
-export interface ProcessedProcOrdersData {
-    id?: number;
-    user?: string;
-    title?: string;
-    project?: string;
-    dateCreated?: string;
-    dateNeed?: string;
-    status?: string;
-    warehouse?: string;
-    description?: string;
-    purchaser?: string;
-}
+// export interface ProcessedProcOrdersData {
+//     id?: number;
+//     user?: string;
+//     title?: string;
+//     project?: string;
+//     dateCreated?: Date;
+//     dateNeed?: Date;
+//     status?: string;
+//     warehouse?: string;
+//     description?: string;
+//     purchaser?: string;
+// }

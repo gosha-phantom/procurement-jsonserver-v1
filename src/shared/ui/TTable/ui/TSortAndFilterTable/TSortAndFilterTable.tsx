@@ -1,9 +1,9 @@
+import { useMemo, useState } from 'react';
 import { compareItems, RankingInfo, rankItem } from '@tanstack/match-sorter-utils';
 import {
 	ColumnDef,
 	ColumnFiltersState,
 	FilterFn,
-	flexRender,
 	getCoreRowModel,
 	getFacetedMinMaxValues,
 	getFacetedRowModel,
@@ -17,38 +17,24 @@ import {
 	TableOptions,
 	useReactTable,
 } from '@tanstack/react-table';
-import { ChangeEvent, useMemo, useState } from 'react';
-import {
-	Button,
-	ButtonThemeTypes,
-	DebouncedInput,
-	SimpleInput,
-	SimpleInputTextAlignTypes,
-	SimpleInputThemeTypes
-} from 'shared/ui';
-import { ColumnFilterField } from '../ColumnFilterField/ColumnFilterField';
-import { ReactComponent as SortAscIcon } from '../../../../assets/icons/sort-asc-sortable.svg';
-import { ReactComponent as SortDescIcon } from '../../../../assets/icons/sort-desc-sortable.svg';
-import { ReactComponent as SortIcon } from '../../../../assets/icons/sort-sortable.svg';
-import { HStack, VStack } from '../../../Stack';
+import { Pagination } from '../Pagination/Pagination';
+import { TableComponent } from '../TableComponent/TableComponent';
+import { DebouncedInput, SimpleInputThemeTypes, HStack, VStack } from 'shared/ui';
 
-import classes from '../../styles/TTable.module.scss';
+import classes from './TSortAndFilterTable.module.scss';
 
 declare module '@tanstack/table-core' {
-    interface FilterFns {
-        fuzzy: FilterFn<unknown>
-    }
-    interface FilterMeta {
-        itemRank: RankingInfo
-    }
+    interface FilterFns { fuzzy: FilterFn<unknown> }
+    interface FilterMeta { itemRank: RankingInfo }
 }
 
 interface TSortAndFilterTableProps<TData> {
     tableColumns:  ColumnDef<TData>[];
     tableData: TData[];
+    debug?: boolean;
 }
 
-const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+export const tableFuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 	// Rank the item
 	const itemRank = rankItem(row.getValue(columnId), value);
 
@@ -61,7 +47,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 	return itemRank.passed;
 };
 
-const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
+export const tableFuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 	let dir = 0;
 
 	// Only sort by rank if the column has ranking information
@@ -77,7 +63,7 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 };
 
 export const TSortAndFilterTable = (props: TSortAndFilterTableProps<any>) => {
-	const { tableColumns, tableData } = props;
+	const { tableColumns, tableData, debug = false } = props;
 
 	const data = useMemo(() => [...tableData], [tableData]);
 	const columns = useMemo(() => [...tableColumns], [tableColumns]);
@@ -86,15 +72,14 @@ export const TSortAndFilterTable = (props: TSortAndFilterTableProps<any>) => {
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [globalFilter, setGlobalFilter] = useState('');
 
-	const table = useReactTable<TableOptions<any[]>>({
-		// @ts-ignore
+	const table = useReactTable({
 		data, columns,
-		filterFns: { fuzzy: fuzzyFilter },
+		filterFns: { fuzzy: tableFuzzyFilter },
 		state: { sorting, columnFilters, globalFilter },
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		onGlobalFilterChange: setGlobalFilter,
-		globalFilterFn: fuzzyFilter,
+		globalFilterFn: tableFuzzyFilter,
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
@@ -102,14 +87,17 @@ export const TSortAndFilterTable = (props: TSortAndFilterTableProps<any>) => {
 		getFacetedRowModel: getFacetedRowModel(),
 		getFacetedUniqueValues: getFacetedUniqueValues(),
 		getFacetedMinMaxValues: getFacetedMinMaxValues(),
-		debugTable: true,
-		debugHeaders: true,
-		debugColumns: false,
+		debugTable: debug,
+		debugHeaders: debug,
+		debugColumns: debug,
 	});
 
+	// console.log(table.options.state);
+
+	// console.log('render');
 
 	return (
-		<HStack gap={'8'}>
+		<HStack gap={'8'} maxWidth>
 			<DebouncedInput
 				className={classes.inputGlobalFilter}
 				placeholder={'Поиск по всей таблице...'}
@@ -118,132 +106,10 @@ export const TSortAndFilterTable = (props: TSortAndFilterTableProps<any>) => {
 				theme={SimpleInputThemeTypes.ROUNDED}
 				delay={500}
 			/>
-
-			<table className={classes.table}>
-				<thead className={classes.thead}>
-					{table.getHeaderGroups().map(headerGroup => (
-						<tr className={classes.tr} key={headerGroup.id}>
-							{headerGroup.headers.map(header => {
-								return (
-									<th className={classes.th} key={header.id} colSpan={header.colSpan}>
-										{header.isPlaceholder ? null : (
-											<HStack align={'center'}>
-												<div
-													className={`${classes.sort} ${header.column.getCanSort() ? classes['cursor-pointer'] : ''}`}
-													{...{ onClick: header.column.getToggleSortingHandler() }}>
-													{flexRender(
-														header.column.columnDef.header,
-														header.getContext()
-													)}
-													{{
-														asc: <SortAscIcon />,
-														desc: <SortDescIcon />,
-													}[header.column.getIsSorted() as string] ??
-                                                        header.column.getCanSort()
-														? <SortIcon />
-														: null
-													}
-												</div>
-												{
-													header.column.getCanFilter()
-														? (
-															<div>
-																<ColumnFilterField column={header.column} table={table}/>
-																{/*<Filter column={header.column} table={table}/>*/}
-															</div>
-														)
-														: null
-												}
-											</HStack>
-										)}
-									</th>
-								);
-							})}
-						</tr>
-					))}
-				</thead>
-				<tbody className={classes.tbody}>
-					{table.getRowModel().rows.map(row => (
-						<tr className={classes.tr} key={row.id}>
-							{row.getVisibleCells().map(cell => (
-								<td className={classes.td} key={cell.id}>
-									{flexRender(
-										cell.column.columnDef.cell,
-										cell.getContext()
-									)}
-								</td>
-							))}
-						</tr>
-					))}
-				</tbody>
-				<tfoot className={classes.tfoot}>
-					{table.getFooterGroups().map(footerGroup => (
-						<tr className={classes.tr} key={footerGroup.id}>
-							{footerGroup.headers.map(footerHeader => (
-								<th key={footerHeader.id} className={classes.th}>
-									{footerHeader.isPlaceholder
-										? null
-										: flexRender(
-											footerHeader.column.columnDef.header,
-											footerHeader.getContext()
-										)
-									}
-								</th>
-							))}
-						</tr>
-					))}
-				</tfoot>
-			</table>
+			<Pagination table={table} />
 			<VStack>Всего найдено записей: {table.getPrePaginationRowModel().rows.length}.</VStack>
-			<VStack gap={'8'} align={'center'}>
-				<Button
-					theme={ButtonThemeTypes.ROUNDED}
-					onClick={() => table.setPageIndex(0)}
-					disabled={!table.getCanPreviousPage()}
-				>{'<<'}</Button>
-				<Button
-					theme={ButtonThemeTypes.ROUNDED}
-					onClick={() => table.previousPage()}
-					disabled={!table.getCanPreviousPage()}
-				>{'<'}</Button>
-				<Button
-					theme={ButtonThemeTypes.ROUNDED}
-					onClick={() => table.nextPage()}
-					disabled={!table.getCanNextPage()}
-				>{'>'}</Button>
-				<Button
-					theme={ButtonThemeTypes.ROUNDED}
-					onClick={() => table.setPageIndex(table.getPageCount()-1)}
-					disabled={!table.getCanNextPage()}
-				>{'>>'}</Button>
-                Страница <strong>{table.getState().pagination.pageIndex + 1}</strong> из <strong>{table.getPageCount()}</strong>
-				| Перейти к странице
-				<SimpleInput
-					className={classes['w-5-rem']}
-					type="number"
-					theme={SimpleInputThemeTypes.ROUNDED}
-					textAlign={SimpleInputTextAlignTypes.CENTER}
-					defaultValue={table.getState().pagination.pageIndex + 1}
-					onChange={(e: ChangeEvent<HTMLInputElement>) => {
-						const page = e.target.value ? Number(e.target.value) - 1 : 0;
-						console.log(e);
-						table.setPageIndex(page);
-					}}
-				/>
-				<select
-					value={table.getState().pagination.pageSize}
-					onChange={e => {
-						table.setPageSize(Number(e.target.value));
-					}}
-				>
-					{[10, 20, 30, 40,50].map(pageSize => (
-						<option value={pageSize} key={pageSize}>Показать {pageSize} записей.</option>
-					))}
-				</select>
-			</VStack>
-			{/*<pre>{JSON.stringify(table.getState(), null, 2)}</pre>*/}
+			<TableComponent table={table} />
+			{debug && (<pre><code>{JSON.stringify(table.getState(), null, 2)}</code></pre>)}
 		</HStack>
 	);
 };
-
-

@@ -14,6 +14,8 @@
 
 .page-wrapper {
     flex-grow: 1;
+    overflow-y: auto;
+    min-height: calc(100vh - var(--navbar-height));
 }
 
 @media screen and (max-width: 599px) {

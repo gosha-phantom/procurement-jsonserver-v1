@@ -1,32 +1,22 @@
-import { getProcOrderStatus } from 'entities/ProcOrderStatus';
-import { Suspense, useEffect } from 'react';
 import { RouterProvider } from 'app/providers';
+import { Suspense } from 'react';
 import { Navbar, Sidebar } from 'widgets';
-import { getUsers } from 'entities/Users';
-import { getWarehouses } from 'entities/Warehouse';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import './styles/app.scss';
 
 function App() {
-	const dispatch = useAppDispatch();
-
-	// load user list
-	useEffect(() => {
-		dispatch(getUsers());
-		dispatch(getWarehouses());
-		dispatch(getProcOrderStatus());
-	}, [dispatch]);
 
 	return (
-		<div className="app">
+		<main className="app">
 			<Navbar />
-			<div className={'content'}>
+			<section className={'content'}>
+				<Sidebar />
 				<Suspense fallback="">
-					<Sidebar />
-					<RouterProvider />
+					<section className={'page-wrapper'}>
+						<RouterProvider />
+					</section>
 				</Suspense>
-			</div>
-		</div>
+			</section>
+		</main>
 	);
 }
 

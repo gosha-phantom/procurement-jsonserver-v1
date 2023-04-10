@@ -6,10 +6,10 @@ import { WarehouseSchema } from 'entities/Warehouse';
 
 export interface StateSchema {
     counter: CounterSchema;
-    users: UsersSchema;
+    // users: UsersSchema;
     procOrders: ProcOrderSchema;
-    warehouses: WarehouseSchema;
-    procOrderStatus: ProcOrderStatusSchema;
+    // warehouses: WarehouseSchema;
+    // procOrderStatus: ProcOrderStatusSchema;
 }
 
 export interface ThunkConfig<T> {

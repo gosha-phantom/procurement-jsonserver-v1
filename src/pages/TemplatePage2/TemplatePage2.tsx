@@ -1,8 +1,8 @@
-import { ColumnDef, ColumnFiltersState, createColumnHelper } from '@tanstack/react-table';
+import { ColumnDef } from '@tanstack/react-table';
 import axios from 'axios';
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { TSortAndFilterTable, Text, TextSize } from 'shared/ui';
+import { Table, Text, TextSize } from 'shared/ui';
 
 import classes from './TemplatePage2.module.scss';
 
@@ -96,7 +96,7 @@ const TemplatePage2 = (props: TemplatePageProps) => {
 	return (
 		<div className={classNames(classes.TemplatePage2, {}, [className])}>
 			<Text size={TextSize.LARGE}>Тестовая страница 2!!!</Text>
-			<TSortAndFilterTable tableData={data} tableColumns={tableColumns}/>
+			<Table tableData={data} tableColumns={tableColumns}/>
 		</div>
 	);
 };

@@ -2,7 +2,7 @@
     cursor: pointer;
     color: var(--primary-color);
     transition: 0.3s opacity;
-    padding: 0.25rem 0.5rem;
+    padding: 0 0.25rem;
 
     &:hover {
         opacity: 0.8;
@@ -52,5 +52,5 @@
 
 .disabled {
     cursor: auto;
-    opacity: 0.6;
+    opacity: var(--disabled-opacity);
 }
