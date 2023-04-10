@@ -16,7 +16,7 @@ interface PaginationProps {
     table: Table<any>;
 }
 
-export const Pagination = (props: PaginationProps) => {
+export const Pagination = memo((props: PaginationProps) => {
 	const { className, table } = props;
 
 	return (
@@ -51,7 +51,7 @@ export const Pagination = (props: PaginationProps) => {
 				defaultValue={table.getState().pagination.pageIndex + 1}
 				onChange={(e: ChangeEvent<HTMLInputElement>) => {
 					const page = e.target.value ? Number(e.target.value) - 1 : 0;
-					console.log(e);
+					// console.log(e);
 					table.setPageIndex(page);
 				}}
 			/>
@@ -71,4 +71,4 @@ export const Pagination = (props: PaginationProps) => {
 			/>
 		</VStack>
 	);
-};
+});

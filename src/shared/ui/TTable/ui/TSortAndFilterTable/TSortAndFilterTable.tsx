@@ -90,7 +90,11 @@ export const TSortAndFilterTable = (props: TSortAndFilterTableProps<any>) => {
 		debugTable: debug,
 		debugHeaders: debug,
 		debugColumns: debug,
+		enableMultiSort: true,
+
 	});
+
+	// table.setPageSize(25);
 
 	// console.log(table.options.state);
 

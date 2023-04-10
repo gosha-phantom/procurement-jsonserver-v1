@@ -25,7 +25,8 @@ export const TableComponent = (props: TableComponentProps) => {
 										<HStack align={'center'}>
 											<div
 												className={`${classes.sort} ${header.column.getCanSort() ? classes['cursor-pointer'] : ''}`}
-												{...{ onClick: header.column.getToggleSortingHandler() }}>
+												{...{ onClick: header.column.getToggleSortingHandler() }}
+											>
 												{flexRender(
 													header.column.columnDef.header,
 													header.getContext()
@@ -33,11 +34,7 @@ export const TableComponent = (props: TableComponentProps) => {
 												{{
 													asc: <SortAscIcon />,
 													desc: <SortDescIcon />,
-												}[header.column.getIsSorted() as string] ??
-                                            header.column.getCanSort()
-													? <SortIcon />
-													: null
-												}
+												}[header.column.getIsSorted() as string] ?? null}
 											</div>
 											{
 												header.column.getCanFilter()

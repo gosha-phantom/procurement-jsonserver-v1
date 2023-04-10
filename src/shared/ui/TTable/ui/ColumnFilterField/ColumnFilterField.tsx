@@ -60,7 +60,7 @@ export const ColumnFilterField = (props: ColumnFilterFieldProps) => {
 				/>
 			</VStack>
 		) : (
-			<VStack align={'center'}>
+			<VStack align={'center'} justify={'center'}>
 				<datalist id={column.id + '_list'}>
 					{sortedUniqueValues.slice(0,1000).map((value: any) => (
 						<option value={value} key={value} />
@@ -76,12 +76,10 @@ export const ColumnFilterField = (props: ColumnFilterFieldProps) => {
 					list={column.id + '_list'}
 				/>
 				<div />
-				{/*<Button theme={ButtonThemeTypes.CLEAR}>*/}
 				<ClearIcon
 					className={classes.deleteIcon}
 					onClick={value => column.setFilterValue('')}
 				/>
-				{/*</Button>*/}
 			</VStack>
 		);
 };
