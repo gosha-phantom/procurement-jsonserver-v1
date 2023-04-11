@@ -17,3 +17,4 @@ export { VStack, HStack } from './Stack';
 export {
 	TBasicTable, Table, tableFuzzySort, tableFuzzyFilter
 } from './TTable';
+export { Modal, type ModalThemeTypes, type ModalContentWidthTypes } from './Modal/Modal';

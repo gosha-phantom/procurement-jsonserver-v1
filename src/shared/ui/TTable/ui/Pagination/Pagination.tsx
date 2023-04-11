@@ -9,15 +9,17 @@ import {
 	SimpleInputTextAlignTypes,
 	SimpleInputThemeTypes, VStack
 } from 'shared/ui';
+import { SelectOption } from 'shared/ui/Select/Select';
 import classes from './Pagination.module.scss';
 
 interface PaginationProps {
     className?: string;
     table: Table<any>;
+    selectPageSizes: number[];
 }
 
 export const Pagination = memo((props: PaginationProps) => {
-	const { className, table } = props;
+	const { className, table, selectPageSizes } = props;
 
 	return (
 		<VStack gap={'8'} align={'center'} className={classNames('', {}, [className])}>
@@ -60,13 +62,9 @@ export const Pagination = memo((props: PaginationProps) => {
 				onChange={(e: ChangeEvent<HTMLSelectElement>) => {
 					table.setPageSize(Number(e.target.value));
 				}}
-				options={[
-					{ key: '10', value: '10' },
-					{ key: '20', value: '20' },
-					{ key: '30', value: '30' },
-					{ key: '40', value: '40' },
-					{ key: '50', value: '50' }
-				]}
+				options={selectPageSizes.map((value: number) => {
+					return { key: value.toString(), value: value.toString() } as SelectOption;
+				})}
 				label={'Показать строк:'}
 			/>
 		</VStack>

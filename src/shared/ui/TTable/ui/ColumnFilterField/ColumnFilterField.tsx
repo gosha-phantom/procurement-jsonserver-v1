@@ -78,7 +78,7 @@ export const ColumnFilterField = (props: ColumnFilterFieldProps) => {
 				<div />
 				<ClearIcon
 					className={classes.deleteIcon}
-					onClick={value => column.setFilterValue('')}
+					onClick={() => column.setFilterValue('')}
 				/>
 			</VStack>
 		);

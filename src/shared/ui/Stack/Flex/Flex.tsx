@@ -1,5 +1,5 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
-import { classNames, Mods } from '../../../lib/classNames/classNames';
+import { ComponentPropsWithoutRef, ComponentType, ReactNode } from 'react';
+import { classNames, Mods } from 'shared/lib';
 import classes from './Flex.module.scss';
 
 export type FlexJustify = 'start' | 'center' | 'end' | 'between';
@@ -41,9 +41,27 @@ const flexGapClasses: Record<FlexGap, string> = {
 	32: classes.gap32
 };
 
-type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+// type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
-export interface FlexProps extends DivProps {
+// export interface FlexProps extends DivProps {
+//     className?: string;
+//     children: ReactNode;
+//     justify?: FlexJustify,
+//     align?: FlexAlign;
+//     alignContent?: FlexAlignContent;
+//     direction?: FlexDirection;
+//     gap?: FlexGap;
+//     maxWidth?: boolean;
+// }
+
+export type FlexElements = 'div' | 'section' | 'main' | 'span' | 'p';
+
+type FlexAdditionalProps<Type extends FlexElements | ComponentType> =
+    Type extends keyof JSX.IntrinsicElements
+        ? JSX.IntrinsicElements[Type]
+        : ComponentPropsWithoutRef<Type>
+
+export type FlexProps<Type extends FlexElements | ComponentType> = {
     className?: string;
     children: ReactNode;
     justify?: FlexJustify,
@@ -52,11 +70,12 @@ export interface FlexProps extends DivProps {
     direction?: FlexDirection;
     gap?: FlexGap;
     maxWidth?: boolean;
-}
+    as?: Type;
+} & FlexAdditionalProps<Type>;
 
-export const Flex = (props: FlexProps) => {
+export const Flex = <Type extends FlexElements | ComponentType<any> = 'div'>(props: FlexProps<Type>) => {
 	const {
-		className, children,
+		className, children, as,
 		justify = 'start',
 		align = 'start',
 		alignContent,
@@ -64,6 +83,8 @@ export const Flex = (props: FlexProps) => {
 		gap = '4',
 		maxWidth = true
 	} = props;
+
+	const Component = as || 'div';
 
 	const cssClasses = [
 		className,
@@ -81,8 +102,8 @@ export const Flex = (props: FlexProps) => {
 	};
 
 	return (
-		<div className={classNames(classes.flex, mods, cssClasses)}>
+		<Component className={classNames(classes.flex, mods, cssClasses)}>
 			{children}
-		</div>
+		</Component>
 	);
 };

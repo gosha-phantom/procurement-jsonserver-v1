@@ -2,7 +2,9 @@ import { ProcOrdersTable } from 'entities/ProcOrders';
 import { memo, useState } from 'react';
 import { classNames } from 'shared/lib';
 import { SimpleInput, Text, TextSize, VStack } from 'shared/ui';
+import { selectProcOrdersIsLoading } from 'entities/ProcOrders';
 import classes from './ProcOrdersPage.module.scss';
+import { useSelector } from 'react-redux';
 
 interface ProcOrdersPageProps {
     className?: string;
@@ -11,13 +13,14 @@ interface ProcOrdersPageProps {
 const ProcOrdersPage = (props: ProcOrdersPageProps) => {
 	const { className } = props;
 	const [myOrders, setMyOrders] = useState<boolean>(false);
+	const isLoading = useSelector(selectProcOrdersIsLoading);
 
 	return (
 		<main className={classNames(classes.ProcOrdersPage, {}, [className])}>
-			<VStack align={'center'} gap={'32'}>
+			<VStack as={'section'} align={'center'} gap={'32'}>
 				<Text size={TextSize.LARGE}>Таблица заказов на закупку</Text>
 				<VStack gap={'8'} maxWidth={false} align={'center'}>
-					<SimpleInput type="checkbox" checked={myOrders} onChange={(e) => {
+					<SimpleInput type="checkbox" checked={myOrders} disabled={isLoading} onChange={(e) => {
 						setMyOrders(Boolean(e.target.checked));
 					}}/>
 					<Text size={TextSize.MEDIUM}>Показать мои заявки</Text>

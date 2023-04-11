@@ -12,6 +12,7 @@
         "start:dev": "vite --host"
     },
     "dependencies": {
+        "@headlessui/react": "^1.7.13",
         "@reduxjs/toolkit": "^1.9.3",
         "@tanstack/match-sorter-utils": "^8.8.4",
         "@tanstack/react-table": "^8.8.5",

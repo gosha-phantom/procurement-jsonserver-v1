@@ -1,6 +1,6 @@
-import { Flex, FlexProps } from '../Flex/Flex';
+import { Flex, FlexProps, FlexElements } from '../Flex/Flex';
 
-type VStackProps = Omit<FlexProps, 'direction'>
+type VStackProps = Omit<FlexProps<FlexElements>, 'direction'>
 
 export const VStack = (props: VStackProps) => (
 	<Flex direction={'row'} {...props} />

@@ -103,7 +103,7 @@ export const ProcOrdersTable = (props: ProcOrdersTableProps) => {
 			{isLoading && <Loader />}
 			{!isLoading && error && (<p>{error}</p>)}
 			{!isLoading && !error && data && (
-				<Table tableColumns={tableColumns} tableData={data} debug={false}/>
+				<Table tableColumns={tableColumns} tableData={data} debug={false} usePaginate={false}/>
 			)}
 		</section>
 	);
