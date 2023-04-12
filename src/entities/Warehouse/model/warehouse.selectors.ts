@@ -1,4 +1,4 @@
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from 'shared/config/stateConfig/StateSchema';
 import { selectWarehouses } from './warehouse.slice';
 
 export const selectWarehousesIsLoading = (state: StateSchema) => state.warehouses.isLoading || false;

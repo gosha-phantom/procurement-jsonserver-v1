@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ProcOrder } from './procOrders.types';
-import { ThunkConfig } from 'app/providers/StoreProvider';
+import { ThunkConfig } from 'shared/config/stateConfig/StateSchema';
 import { axiosInstance } from 'shared/axios/axiosInstance';
 
 export const getProcOrders = createAsyncThunk<ProcOrder[], void, ThunkConfig<string>>(

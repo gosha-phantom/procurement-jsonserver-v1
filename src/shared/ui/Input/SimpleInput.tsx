@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, memo } from 'react';
+import { InputHTMLAttributes, memo, forwardRef, ForwardedRef } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import classes from './Input.module.scss';
 
@@ -30,6 +30,8 @@ export enum SimpleInputBGColorTypes {
 }
 
 type HTMLSimpleInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'readOnly' | 'size'>
+// DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>
+// type HTMLSimpleInputProps = Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'value' | 'readOnly' | 'size'>
 
 export interface SimpleInputProps extends HTMLSimpleInputProps {
     className?: string;
@@ -40,7 +42,7 @@ export interface SimpleInputProps extends HTMLSimpleInputProps {
     textAlign?: SimpleInputTextAlignTypes;
 }
 
-export const SimpleInput = memo((props: SimpleInputProps) => {
+export const SimpleInput = memo(forwardRef((props: SimpleInputProps, ref: ForwardedRef<HTMLInputElement>) => {
 	const {
 		className, value,
 		type = 'text',
@@ -63,7 +65,12 @@ export const SimpleInput = memo((props: SimpleInputProps) => {
 			className={classNames(classes.Input, mods, [className])}
 			type={type}
 			value={value}
+			ref={ref}
 			{...otherProps}
 		/>
 	);
-});
+}));
+
+// export const SimpleInputRef = memo(forwardRef(props: SimpleInputProps, ref) => {
+//     return <SimpleInput />
+// });

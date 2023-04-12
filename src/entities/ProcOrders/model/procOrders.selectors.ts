@@ -1,4 +1,4 @@
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from 'shared/config/stateConfig/StateSchema';
 import { selectProcOrders } from './procOrders.slice';
 
 export const selectProcOrdersIsLoading = (state: StateSchema) => state.procOrders.isLoading;

@@ -1,5 +1,5 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from 'shared/config/stateConfig/StateSchema';
 import { UsersSchema, UserType } from './users.types';
 import { getUsers } from './users.services';
 

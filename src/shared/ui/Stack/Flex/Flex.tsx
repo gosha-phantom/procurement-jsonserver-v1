@@ -54,7 +54,7 @@ const flexGapClasses: Record<FlexGap, string> = {
 //     maxWidth?: boolean;
 // }
 
-export type FlexElements = 'div' | 'section' | 'main' | 'span' | 'p';
+export type FlexElements = 'div' | 'section' | 'main' | 'span' | 'p' | 'form';
 
 type FlexAdditionalProps<Type extends FlexElements | ComponentType> =
     Type extends keyof JSX.IntrinsicElements

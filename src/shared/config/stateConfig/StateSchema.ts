@@ -3,6 +3,7 @@ import { ProcOrderStatusSchema } from 'entities/ProcOrderStatus';
 import { UsersSchema } from 'entities/Users';
 import { ProcOrderSchema } from 'entities/ProcOrders';
 import { WarehouseSchema } from 'entities/Warehouse';
+import { ProcAuthLoginSchema } from 'entities/ProcAuthLogin';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -10,6 +11,7 @@ export interface StateSchema {
     procOrders: ProcOrderSchema;
     // warehouses: WarehouseSchema;
     // procOrderStatus: ProcOrderStatusSchema;
+    procAuthLogin: ProcAuthLoginSchema;
 }
 
 export interface ThunkConfig<T> {

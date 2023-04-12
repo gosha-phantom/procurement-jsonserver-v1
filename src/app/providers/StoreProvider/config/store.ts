@@ -5,6 +5,7 @@ import { procOrderStatusReducer } from 'entities/ProcOrderStatus';
 import { usersReducer } from 'entities/Users';
 import { procOrdersReducer } from 'entities/ProcOrders';
 import { warehousesReducer } from 'entities/Warehouse';
+import { procAuthLoginReducer } from 'entities/ProcAuthLogin';
 
 export const store = configureStore<StateSchema>({
 	reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore<StateSchema>({
 		procOrders: procOrdersReducer,
 		// warehouses: warehousesReducer,
 		// procOrderStatus: procOrderStatusReducer,
+		procAuthLogin: procAuthLoginReducer,
 	},
 	devTools: true,
 });

@@ -1,5 +1,6 @@
 import { memo, useState } from 'react';
 import { ReactComponent as CompanyLogo } from 'shared/assets/icons/some-logo.svg';
+import { ProcAuthLoginModal } from 'entities/ProcAuthLogin';
 import { classNames } from 'shared/lib';
 import { Button, ButtonThemeTypes, HStack, Modal } from 'shared/ui';
 import classes from './Navbar.module.scss';
@@ -14,11 +15,12 @@ export const Navbar = memo((props: NavbarProps) => {
 
 	return (
 		<header className={classNames(classes.Navbar, {}, [className])}>
-			<Modal isOpen={authModalIsOpen} setIsOpen={setAuthModalIsOpen}>
-				<h2>Test Modal Title</h2>
-				<p>Some text inside modal</p>
-				<button onClick={() => setAuthModalIsOpen(false)}>Close modal</button>
-			</Modal>
+			{/*<Modal isOpen={authModalIsOpen} setIsOpen={setAuthModalIsOpen}>*/}
+			{/*	<h2>Test Modal Title</h2>*/}
+			{/*	<p>Some text inside modal</p>*/}
+			{/*	<button onClick={() => setAuthModalIsOpen(false)}>Close modal</button>*/}
+			{/*</Modal>*/}
+			<ProcAuthLoginModal isOpen={authModalIsOpen} setIsOpen={() => setAuthModalIsOpen(false)} />
 			<CompanyLogo className={classes.logo}/>
 			<div className={classes.title}>COMPANY NAME</div>
 			<div className={classes.links}>

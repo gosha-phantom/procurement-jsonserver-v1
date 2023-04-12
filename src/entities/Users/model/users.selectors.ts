@@ -1,4 +1,4 @@
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from 'shared/config/stateConfig/StateSchema';
 import { selectUsers } from './users.slice';
 
 export const selectUsersIsLoading = (state: StateSchema) => state.users.isLoading || false;

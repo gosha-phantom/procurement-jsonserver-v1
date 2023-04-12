@@ -1,5 +1,5 @@
 import { createSlice, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from 'shared/config/stateConfig/StateSchema';
 import { ProcOrderStatus, ProcOrderStatusSchema } from './procOrderStatus.types';
 import { getProcOrderStatus } from './procOrderStatus.services';
 

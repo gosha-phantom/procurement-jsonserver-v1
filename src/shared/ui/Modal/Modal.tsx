@@ -1,5 +1,5 @@
-import { Dialog } from '@headlessui/react';
-import { memo, ReactNode } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { memo, ReactNode, Fragment } from 'react';
 import { classNames, Mods } from 'shared/lib';
 import classes from './Modal.module.scss';
 
@@ -21,6 +21,7 @@ const ModalContentWidthClasses: Record<ModalContentWidthTypes, string> = {
 };
 
 interface ModalProps {
+    className?: string;
     contentWidth?: ModalContentWidthTypes;
     theme?: ModalThemeTypes;
     children?: ReactNode;
@@ -30,7 +31,7 @@ interface ModalProps {
 
 export const Modal = memo((props: ModalProps) => {
 	const {
-		children, isOpen = false, setIsOpen,
+		children, isOpen = false, setIsOpen, className,
 		theme = 'ROUNDED', contentWidth = '50'
 	} = props;
 
@@ -40,15 +41,25 @@ export const Modal = memo((props: ModalProps) => {
 	};
 
 	return (
-		<Dialog open={isOpen} onClose={() => setIsOpen?.(false)}>
-			<div
+		<Transition
+			show={isOpen}
+			enter="ease-out duration-500"
+			enterFrom="opacity-0"
+			enterTo="opacity-100"
+			leave="ease-in duration-500"
+			leaveFrom="opacity-100"
+			leaveTo="opacity-0"
+			as={Fragment}
+		>
+			<Dialog
+				onClose={() => setIsOpen?.(false)}
 				className={classes.modal}
-				onClick={() => setIsOpen?.(false)}
 			>
-				<div className={classNames(classes.content, contentMods, [])}>
+				<Dialog.Panel className={classNames(classes.content, contentMods, [className])}>
 					{children}
-				</div>
-			</div>
-		</Dialog>
+				</Dialog.Panel>
+			</Dialog>
+		</Transition>
+
 	);
 });
