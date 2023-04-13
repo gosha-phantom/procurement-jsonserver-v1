@@ -1,5 +1,3 @@
-import { EntityState } from '@reduxjs/toolkit';
-
 export interface ProcAuthLogin {
     ID: number;
     login: string;
@@ -14,11 +12,12 @@ export interface ProcAuthLogin {
 }
 
 export interface ProcAuthLoginData {
-    data?: ProcAuthLogin;
-    token?: string;
+    data: ProcAuthLogin;
+    token: string;
 }
 
-export interface ProcAuthLoginSchema extends EntityState<ProcAuthLoginData> {
+export interface ProcAuthLoginSchema {
     isLoading?: boolean;
     error?: string;
+    data?: ProcAuthLoginData;
 }

@@ -1,3 +1,4 @@
+import { selectProcAuthData } from 'entities/ProcAuthLogin';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { ColumnDef } from '@tanstack/react-table';
@@ -28,11 +29,12 @@ export const ProcOrdersTable = (props: ProcOrdersTableProps) => {
 	const error = useSelector(selectProcOrdersError);
 	const isLoading = useSelector(selectProcOrdersIsLoading);
 	const data = useSelector(selectProcOrdersAll);
+	const authData = useSelector(selectProcAuthData);
 
 	useEffect(() => {
 		!myOrders && dispatch(getProcOrders());
-		myOrders && dispatch(getProcOrdersByUserID());
-	}, [dispatch, myOrders]);
+		myOrders && dispatch(getProcOrdersByUserID(authData?.ID));
+	}, [dispatch, myOrders, authData?.ID]);
 
 	const tableColumns: ColumnDef<ProcOrder, unknown>[]  = [
 		{

@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 import { ProcOrder } from './procOrders.types';
 import { ThunkConfig } from 'shared/config/stateConfig/StateSchema';
 import { axiosInstance } from 'shared/axios/axiosInstance';
@@ -19,18 +20,22 @@ export const getProcOrders = createAsyncThunk<ProcOrder[], void, ThunkConfig<str
 	}
 );
 
-export const getProcOrdersByUserID = createAsyncThunk<ProcOrder[], void, ThunkConfig<string>>(
+export const getProcOrdersByUserID = createAsyncThunk<ProcOrder[], number | undefined, ThunkConfig<string>>(
 	'procOrders/getProcOrdersByUserID',
-	async(_, thunkApi) => {
+	async(userID, thunkApi) => {
 		try {
-			const response = await axiosInstance.get<ProcOrder[]>(`/proc/orders?userid=${23}`);
+			if (!userID) { throw new Error('UserID is missing!');}
+
+			const response = await axiosInstance.get<ProcOrder[]>(`/proc/userorders?userid=${userID}`);
 			if (!response.data) { throw new Error('Axios error by getting procurement orders by user ID from DB!'); }
 
 			console.log(response.data);
 			return response.data;
 		} catch(error) {
 			console.log(error);
-			return thunkApi.rejectWithValue('Error by getting procurement orders by user ID from DB!');
+			let response = 'Error by getting procurement orders by user ID from DB!';
+			if (error instanceof AxiosError) { response = error?.response?.data.message; }
+			return thunkApi.rejectWithValue(response);
 		}
 	}
 );

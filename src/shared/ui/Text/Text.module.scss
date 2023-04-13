@@ -17,3 +17,9 @@
 .text-xl {
     font: var(--font-extra-large);
 }
+
+.disabled {
+    opacity: var(--disabled-opacity);
+    fill-opacity: var(--disabled-opacity);
+    stroke-opacity: var(--disabled-opacity);
+}

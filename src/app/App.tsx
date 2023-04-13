@@ -1,9 +1,16 @@
 import { RouterProvider } from 'app/providers';
-import { Suspense } from 'react';
+import { procAuthLoginActions } from 'entities/ProcAuthLogin';
+import { Suspense, useEffect } from 'react';
+import { useAppDispatch } from 'shared/lib';
 import { Navbar, Sidebar } from 'widgets';
 import './styles/app.scss';
 
 function App() {
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(procAuthLoginActions.getAuthDataFromLC());
+	}, [dispatch]);
 
 	return (
 		<main className="app">

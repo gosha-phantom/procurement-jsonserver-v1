@@ -5,7 +5,7 @@ export type {
 export { postProcAuthLogin } from './model/procAuthLogin.services';
 
 export {
-	procAuthLoginActions, procAuthLoginReducer, selectProcAuthLogin,
+	procAuthLoginActions, procAuthLoginReducer,  // selectProcAuthLogin,
 } from './model/procAuthLogin.slice';
 
 export {

@@ -1,23 +1,33 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProcAuthLoginData, ProcAuthLoginSchema } from './procAuthLogin.types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PROC_AUTH_DATA, PROC_AUTH_TOKEN } from 'shared/consts/localstorage';
 import { postProcAuthLogin } from './procAuthLogin.services';
-import { StateSchema } from 'shared/config/stateConfig/StateSchema';
+import { ProcAuthLoginData, ProcAuthLoginSchema } from './procAuthLogin.types';
 
-const procAuthLoginAdapter = createEntityAdapter<ProcAuthLoginData>({});
-
-export const selectProcAuthLogin = procAuthLoginAdapter.getSelectors<StateSchema>(
-	(state) => state.procAuthLogin || procAuthLoginAdapter.getInitialState(),
-);
+const initialState: ProcAuthLoginSchema = {
+	error: undefined,
+	isLoading: undefined,
+	data: undefined
+};
 
 const procAuthLoginSlice = createSlice({
 	name: 'procAuthLoginSlice',
-	initialState: procAuthLoginAdapter.getInitialState<ProcAuthLoginSchema>({
-		isLoading: false,
-		error: undefined,
-		ids: [],
-		entities: {},
-	}),
-	reducers: {},
+	initialState,
+	reducers: {
+		setAuthDataToLC: (state, action: PayloadAction<ProcAuthLoginData>) => {
+			localStorage.setItem(PROC_AUTH_DATA, JSON.stringify(action.payload));
+			localStorage.setItem(PROC_AUTH_TOKEN, action.payload.token);
+		},
+		getAuthDataFromLC: (state) => {
+			const user = localStorage.getItem(PROC_AUTH_DATA);
+			if (user) {
+				state.data = JSON.parse(user);
+			}
+		},
+		logout: (state) => {
+			localStorage.removeItem(PROC_AUTH_DATA);
+			state.data = undefined;
+		}
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(postProcAuthLogin.pending, (state) => {
@@ -30,7 +40,7 @@ const procAuthLoginSlice = createSlice({
 			})
 			.addCase(postProcAuthLogin.fulfilled, (state, action: PayloadAction<ProcAuthLoginData>) => {
 				state.isLoading = false;
-				procAuthLoginAdapter.setOne(state, action.payload);
+				state.data = action.payload;
 			});
 	},
 });

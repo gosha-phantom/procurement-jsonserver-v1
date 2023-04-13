@@ -1,0 +1,2 @@
+export const PROC_AUTH_DATA = 'PROC_AUTH_DATA';
+export const PROC_AUTH_TOKEN = 'PROC_AUTH_TOKEN';

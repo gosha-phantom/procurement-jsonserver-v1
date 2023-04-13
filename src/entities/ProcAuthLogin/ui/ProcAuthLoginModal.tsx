@@ -18,8 +18,7 @@ import {
 import {
 	selectProcAuthData,
 	selectProcAuthDataError,
-	selectProcAuthDataIsLoading,
-	selectProcAuthDataToken
+	selectProcAuthDataIsLoading
 } from '../model/procAuthLogin.selectors';
 import { postProcAuthLogin } from '../model/procAuthLogin.services';
 import classes from './ProcAuthLoginModal.module.scss';
@@ -31,7 +30,7 @@ interface ProcAuthLoginModalProps {
 }
 
 export const ProcAuthLoginModal = memo((props: ProcAuthLoginModalProps) => {
-	const { className, isOpen,setIsOpen } = props;
+	const { className, isOpen, setIsOpen } = props;
 	const loginRef = useRef<HTMLInputElement | null>(null);
 	const passwordRef = useRef<HTMLInputElement | null>(null);
 	const [inputError, setInputError] = useState<string>('');
@@ -41,7 +40,6 @@ export const ProcAuthLoginModal = memo((props: ProcAuthLoginModalProps) => {
 	const isLoading = useSelector(selectProcAuthDataIsLoading);
 	const error = useSelector(selectProcAuthDataError);
 	const data = useSelector(selectProcAuthData);
-	const token = useSelector(selectProcAuthDataToken);
 
 	const onBtnLoginClick = useCallback(() => {
 		setInputError('');
@@ -56,7 +54,6 @@ export const ProcAuthLoginModal = memo((props: ProcAuthLoginModalProps) => {
 			return;
 		}
 		setIsBtnAuthLoginClicked(true);
-		// логика для авторизации пользователя
 	}, []);
 
 	useEffect(() => {
@@ -69,9 +66,9 @@ export const ProcAuthLoginModal = memo((props: ProcAuthLoginModalProps) => {
 		}
 	}, [isBtnAuthLoginClicked, dispatch]);
 
-	useEffect(() => {
-		console.log(token);
-	}, [token]);
+	useEffect(() => { loginRef.current?.focus(); }, [error]);
+
+	useEffect(() => { if (data) {setIsOpen?.();}}, [data, setIsOpen]);
 
 	return (
 		<Modal
@@ -111,8 +108,10 @@ export const ProcAuthLoginModal = memo((props: ProcAuthLoginModalProps) => {
 							ref={passwordRef}
 						/>
 					</VStack>
-					{inputError && (
-						<Text className={classes.errors} size={TextSize.MEDIUM}>{inputError}</Text>
+					{(inputError || error) && (
+						<Text className={classes.errors} size={TextSize.MEDIUM}>
+							{inputError ? inputError : error}
+						</Text>
 					)}
 					<VStack gap={'8'} justify={'center'} align={'center'} className={classes.formButtons}>
 						<Button
@@ -120,7 +119,7 @@ export const ProcAuthLoginModal = memo((props: ProcAuthLoginModalProps) => {
 							theme={ButtonThemeTypes.ROUNDED}
 							onClick={onBtnLoginClick}
 							disabled={isBtnAuthLoginClicked}
-						>{!isLoading ? <Loader size={LoaderSize.MEDIUM}/> : 'Авторизация'}</Button>
+						>{isLoading ? <Loader size={LoaderSize.MEDIUM}/> : 'Авторизация'}</Button>
 						<Button
 							className={classes.formButton}
 							theme={ButtonThemeTypes.ROUNDED}

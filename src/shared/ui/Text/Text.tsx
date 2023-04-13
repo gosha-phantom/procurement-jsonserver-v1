@@ -13,15 +13,17 @@ interface TextProps {
     className?: string;
     children?: ReactNode;
     size?: TextSize;
+    disabled?: boolean;
 }
 
 export const Text = memo((props: TextProps) => {
 	const {
-		className, size = TextSize.MEDIUM, children,
+		className, size = TextSize.MEDIUM, children, disabled
 	} = props;
 
 	const mods: Mods = {
 		[classes[size]]: true,
+		[classes.disabled]: disabled,
 	};
 
 	return (
