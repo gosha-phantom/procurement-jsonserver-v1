@@ -20,5 +20,6 @@ export interface ProcOrder {
 export interface ProcOrderSchema extends EntityState<ProcOrder> {
     isLoading?: boolean;
     error?: string;
+    myOrders?: boolean;
 }
 

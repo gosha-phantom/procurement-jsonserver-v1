@@ -3,6 +3,9 @@
     color: var(--primary-color);
     transition: 0.3s opacity;
     padding: 0 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
         opacity: 0.8;

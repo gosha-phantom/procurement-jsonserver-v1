@@ -9,21 +9,30 @@ export enum TextSize {
     XL = 'text-xl',
 }
 
+export type TextColor = 'red' | 'primary'
+
+const TextColorClasses: Record<TextColor, string> = {
+	red: 'color-red',
+	primary: 'color-primary'
+};
+
 interface TextProps {
     className?: string;
     children?: ReactNode;
     size?: TextSize;
     disabled?: boolean;
+    color?: TextColor;
 }
 
 export const Text = memo((props: TextProps) => {
 	const {
-		className, size = TextSize.MEDIUM, children, disabled
+		className, size = TextSize.MEDIUM, children, disabled, color = 'primary'
 	} = props;
 
 	const mods: Mods = {
 		[classes[size]]: true,
 		[classes.disabled]: disabled,
+		[classes[TextColorClasses[color]]]: true
 	};
 
 	return (

@@ -4,12 +4,12 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "concurrently \"npm run start:json-server\" \"npm run start:dev\"",
+        "start:dev": "concurrently \"npm run start:json-server\" \"npm run start:dev\"",
         "build": "tsc && vite build",
         "preview": "vite preview",
         "start:json-server": "json-server --watch db/db.json --port 3500",
         "start:express-server": "concurrently npx tsc -w ",
-        "start:dev": "vite --host"
+        "dev": "vite --host"
     },
     "dependencies": {
         "@headlessui/react": "^1.7.13",
