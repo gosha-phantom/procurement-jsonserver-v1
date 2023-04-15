@@ -18,9 +18,9 @@ function App() {
 			<section className={'content'}>
 				<Sidebar />
 				<Suspense fallback="">
-					<section className={'page-wrapper'}>
+					<main className={'page-wrapper'}>
 						<RouterProvider />
-					</section>
+					</main>
 				</Suspense>
 			</section>
 		</main>

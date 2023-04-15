@@ -1,14 +1,10 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { ColumnDef } from '@tanstack/react-table';
-import { selectProcAuthData } from 'entities/ProcAuthLogin';
+import { ProcAuthLogin } from 'entities/ProcAuthLogin';
 import { getProcOrders, getProcOrdersByUserID, ProcOrder } from 'entities/ProcOrders';
-import { useAppDispatch, formatDate } from 'shared/lib';
+import { formatDate, useAppDispatch } from 'shared/lib';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Loader, Table } from 'shared/ui';
-import {
-	selectProcOrdersAll, selectProcOrdersError, selectProcOrdersIsLoading,
-} from '../../model/procOrders.selectors';
 import { ProcOrdersTableButtons } from '../procOrdersTableButtons/procOrdersTableButtons';
 import { ProcOrdersTableDetailButton } from '../procOrdersTableDetailButton/procOrdersTableDetailButton';
 
@@ -19,17 +15,17 @@ interface ProcOrdersTableProps {
     myOrders: boolean;
     disableEdit: boolean;
     disableDelete: boolean;
+	data: ProcOrder[];
+	authData?: ProcAuthLogin;
+	isLoading?: boolean;
 }
 
 export const ProcOrdersTable = (props: ProcOrdersTableProps) => {
 	const {
 		className, myOrders, disableDelete, disableEdit,
+		data, authData, isLoading= false
 	} = props;
 	const dispatch = useAppDispatch();
-	const error = useSelector(selectProcOrdersError);
-	const isLoading = useSelector(selectProcOrdersIsLoading);
-	const data = useSelector(selectProcOrdersAll);
-	const authData = useSelector(selectProcAuthData);
 
 	useEffect(() => {
 		!myOrders && dispatch(getProcOrders());
@@ -128,13 +124,16 @@ export const ProcOrdersTable = (props: ProcOrdersTableProps) => {
 		});
 	}
 
-
 	return (
 		<section className={classNames(classes.ProcOrdersTable, {}, [className])}>
-			{isLoading && <Loader />}
-			{/*{!isLoading && error && (<p>{error}</p>)}*/}
-			{!isLoading && data && (
-				<Table tableColumns={procOrdersTableColumns} tableData={data} debug={false} usePaginate={false}/>
+			{isLoading && (<Loader />)}
+			{!isLoading && (
+				<Table
+					tableColumns={procOrdersTableColumns}
+					tableData={data}
+					debug={false}
+					usePaginate={false}
+				/>
 			)}
 		</section>
 	);

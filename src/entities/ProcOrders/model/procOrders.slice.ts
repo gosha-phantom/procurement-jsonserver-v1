@@ -21,9 +21,9 @@ const procOrdersSlice = createSlice({
 		entities: {},
 	}),
 	reducers: {
-		// deleteProcOrderByIdFromState: (state, action: PayloadAction<number>) => {
-		//     state.
-		// }
+		myOrdersToggle: (state, action: PayloadAction<boolean>) => {
+			state.myOrders = action.payload;
+		}
 	},
 	extraReducers: (builder) => {
 		builder

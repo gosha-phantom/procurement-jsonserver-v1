@@ -1,17 +1,35 @@
 import { CounterSchema } from 'entities/_Counter';
-import { ProcOrderStatusSchema } from 'entities/ProcOrderStatus';
-import { UsersSchema } from 'entities/Users';
 import { ProcOrderSchema } from 'entities/ProcOrders';
-import { WarehouseSchema } from 'entities/Warehouse';
 import { ProcAuthLoginSchema } from 'entities/ProcAuthLogin';
+import { ProcOrderCreateSchema } from 'entities/ProcOrderCreate';
+
+import { ProcOrderStatusSchema } from 'entities/ProcOrderStatus';
+import { WarehouseSchema } from 'entities/Warehouse';
+import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 
 export interface StateSchema {
-    counter: CounterSchema;
-    // users: UsersSchema;
-    procOrders: ProcOrderSchema;
-    // warehouses: WarehouseSchema;
-    // procOrderStatus: ProcOrderStatusSchema;
     procAuthLogin: ProcAuthLoginSchema;
+    counter: CounterSchema;
+
+    procOrders?: ProcOrderSchema;
+    procOrderCreate?: ProcOrderCreateSchema;
+    warehouses?: WarehouseSchema;
+    procOrderStatus?: ProcOrderStatusSchema;
+}
+
+export type StateSchemaKey = keyof StateSchema;
+export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
+
+export interface ReducerManager {
+    getReducerMap: () => ReducersMapObject<StateSchema>;
+    getMountedReducers: () => MountedReducers;
+    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
+    add: (key: StateSchemaKey, reducer: Reducer) => void;
+    remove: (key: StateSchemaKey) => void;
+}
+
+export interface StoreWithManager extends EnhancedStore<StateSchema> {
+    reducerManager: ReducerManager;
 }
 
 export interface ThunkConfig<T> {

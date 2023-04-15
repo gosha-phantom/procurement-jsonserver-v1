@@ -1,10 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { counterActions, getCounterValue } from 'entities/_Counter';
 import { useCallback } from 'react';
+import { Button, ButtonThemeTypes, HStack, VStack } from 'shared/ui';
 import classes from './Counter.module.scss';
+import { useAppDispatch } from 'shared/lib';
 
 export const Counter = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const counterValue = useSelector(getCounterValue);
 
 	const increment = useCallback(() => {
@@ -16,12 +18,12 @@ export const Counter = () => {
 	}, [dispatch]);
 
 	return (
-		<div className={classes.counter}>
+		<HStack gap={'16'} justify={'center'} align={'center'} className={classes.counter}>
 			<h2>Counter Value = {counterValue}</h2>
-			<div className={classes.buttons}>
-				<button type={'button'} onClick={increment}>Increment Counter</button>
-				<button type={'button'} onClick={decrement}>Decrement Counter</button>
-			</div>
-		</div>
+			<VStack className={classes.buttons} gap={'8'} justify={'center'} align={'center'}>
+				<Button className={classes.button} theme={ButtonThemeTypes.ROUNDED} onClick={increment}>Increment Counter</Button>
+				<Button className={classes.button} theme={ButtonThemeTypes.ROUNDED} onClick={decrement}>Decrement Counter</Button>
+			</VStack>
+		</HStack>
 	);
 };

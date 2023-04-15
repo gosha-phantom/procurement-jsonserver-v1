@@ -18,3 +18,5 @@ export {
 	TBasicTable, Table, tableFuzzySort, tableFuzzyFilter
 } from './TTable';
 export { Modal, type ModalThemeTypes, type ModalContentWidthTypes } from './Modal/Modal';
+
+export { ErrorBoundary } from './ErrorBoundary/ErrorBoundary';

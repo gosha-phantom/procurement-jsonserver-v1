@@ -40,7 +40,7 @@ export const TSortAndFilterTable = (props: TSortAndFilterTableProps<any>) => {
 	const {
 		tableColumns, tableData,
 		initialPageSize = 10, selectPageSizes = [10, 20, 30, 40, 50],
-		debug = false, usePaginate = true
+		debug = false, usePaginate = true,
 	} = props;
 
 	const data = useMemo(() => [...tableData], [tableData]);
@@ -78,6 +78,7 @@ export const TSortAndFilterTable = (props: TSortAndFilterTableProps<any>) => {
 		} else {
 			table.setPageSize(1000000);
 		}
+	// eslint-disable-next-line
 	}, [table.setPageSize]);
 
 	return (
