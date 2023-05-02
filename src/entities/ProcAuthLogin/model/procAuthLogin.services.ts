@@ -14,7 +14,7 @@ export const postProcAuthLogin = createAsyncThunk<ProcAuthLoginData, ProcAuthLog
 	'procAuthLogin/postProcAuthLogin',
 	async(authData, thunkApi) => {
 		try {
-			const response = await axiosInstance.post<ProcAuthLoginData, AxiosResponse<ProcAuthLoginData>>('/proc/auth/login', authData);
+			const response = await axiosInstance.post<ProcAuthLoginData, AxiosResponse<ProcAuthLoginData>>('/proc/v1/auth/login', authData);
 			if (!response.data) { throw new Error('Axios error by getting procurement authorization data from DB!'); }
 
 			// console.log(response.data);

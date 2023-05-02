@@ -1,11 +1,13 @@
 import { createSlice, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from 'shared/config/stateConfig/StateSchema';
+
 import { Warehouse, WarehouseSchema } from './warehouse.types';
 import { getWarehouses } from './warehouse.services';
 
 const warehousesAdapter = createEntityAdapter<Warehouse>({
 	selectId: (warehouse) => warehouse.id,
-	sortComparer: (a, b) => a.title.localeCompare(b.title),
+	// сортировка уже идет с сервера
+	// sortComparer: (a, b) => a.title.localeCompare(b.title),
 });
 
 export const selectWarehouses = warehousesAdapter.getSelectors<StateSchema>(

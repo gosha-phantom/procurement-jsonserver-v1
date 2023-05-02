@@ -8,7 +8,7 @@ export const postProcOrderCreate = createAsyncThunk<ProcOrderCreateID, ProcOrder
 	'procOrderCreate/postProcOrderCreate',
 	async(data, thunkApi) => {
 		try {
-			const response = await axiosInstance.post<ProcOrderCreateID, AxiosResponse<ProcOrderCreateID>>('/proc/orders/create', data);
+			const response = await axiosInstance.post<ProcOrderCreateID, AxiosResponse<ProcOrderCreateID>>('/proc/v1/orders/create', data);
 			if (!response.data) { throw new Error('Axios error by creating procurement order data to DB!'); }
 
 			return response.data;

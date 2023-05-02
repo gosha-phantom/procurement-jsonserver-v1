@@ -10,7 +10,7 @@ export const getProcOrders = createAsyncThunk<ProcOrder[], void, ThunkConfig<str
 	'procOrders/getProcOrders',
 	async(_, thunkApi) => {
 		try {
-			const response = await axiosInstance.get<ProcOrder[]>('/proc/orders');
+			const response = await axiosInstance.get<ProcOrder[]>('/proc/v1/orders');
 			if (!response.data) { throw new Error('Axios error by getting procurement orders from DB!'); }
 
 			console.log(response.data);
@@ -28,7 +28,7 @@ export const getProcOrdersByUserID = createAsyncThunk<ProcOrder[], number | unde
 		try {
 			if (!userID) { throw new Error('UserID is missing!');}
 
-			const response = await axiosInstance.get<ProcOrder[]>(`/proc/userorders?userid=${userID}`);
+			const response = await axiosInstance.get<ProcOrder[]>(`/proc/v1/userorders?userid=${userID}`);
 			if (!response.data) { throw new Error('Axios error by getting procurement orders by user ID from DB!'); }
 
 			console.log(response.data);
@@ -48,7 +48,7 @@ export const deleteProcOrdersByOrderID = createAsyncThunk<ProcOrder[], number | 
 		try {
 			if (!orderID) { throw new Error('Order ID is missing!');}
 
-			const response = await axiosInstance.get<ProcOrder[]>(`/proc/orders/delete/${orderID}`);
+			const response = await axiosInstance.get<ProcOrder[]>(`/proc/v1/orders/delete/${orderID}`);
 
 			if (!response.data) { throw new Error('Axios error by deleting procurement order by order ID from DB!'); }
 
