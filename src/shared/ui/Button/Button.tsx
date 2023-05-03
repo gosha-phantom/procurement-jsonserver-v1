@@ -1,8 +1,8 @@
-import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
+import { ButtonHTMLAttributes, CSSProperties, memo, ReactNode } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import classes from './Button.module.scss';
 
-export enum ButtonThemeTypes {
+export enum ButtonThemeEnum {
     CLEAR = 'theme-clear',
     OUTLINE = 'theme-outline',
     OUTLINE_RED = 'theme-outline-red',
@@ -10,7 +10,7 @@ export enum ButtonThemeTypes {
     ROUNDED_RED = 'theme-rounded-red',
 }
 
-export enum ButtonSizeTypes {
+export enum ButtonSizeEnum {
     SMALL = 'size-small',
     MEDIUM = 'size-medium',
     LARGE = 'size-large'
@@ -18,8 +18,8 @@ export enum ButtonSizeTypes {
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     className?: string;
-    theme?: ButtonThemeTypes;
-    size?: ButtonSizeTypes;
+    theme?: ButtonThemeEnum;
+    size?: ButtonSizeEnum;
     children?: ReactNode;
     disabled?: boolean;
 }
@@ -27,7 +27,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 export const Button = memo((props: ButtonProps) => {
 	const {
 		className, children,
-		disabled = false, theme = ButtonThemeTypes.OUTLINE, size = ButtonSizeTypes.MEDIUM,
+		disabled = false, theme = ButtonThemeEnum.OUTLINE, size = ButtonSizeEnum.MEDIUM,
 		...otherProps
 	} = props;
 

@@ -5,7 +5,7 @@ import React, { memo } from 'react';
 // import { selectWarehousesAll } from 'entities/Warehouse';
 // import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Text, TextSize } from 'shared/ui';
+import { Text, TextSizeEnum } from 'shared/ui';
 // import {
 // 	Loader,
 // 	TableHeaders, TableDataAlign, Table,
@@ -169,7 +169,7 @@ const TemplatePage = (props: TemplatePageProps) => {
 
 	return (
 		<div className={classNames(classes.TemplatePage, {}, [className])}>
-			<Text size={TextSize.LARGE}>Тестовая страница!!!</Text>
+			<Text size={TextSizeEnum.LARGE}>Тестовая страница!!!</Text>
 			{/*<Table headers={tableHeaders} data={processedData} />*/}
 			{/*<TanstackTable columns={columns} />*/}
 			{/*<BasicReactTable />*/}

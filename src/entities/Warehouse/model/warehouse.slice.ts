@@ -7,7 +7,7 @@ import { Warehouse, WarehouseSchema } from './warehouse.types';
 import { getWarehouses } from './warehouse.services';
 
 const warehousesAdapter = createEntityAdapter<Warehouse>({
-	selectId: (warehouse) => warehouse.id,
+	selectId: (warehouse) => warehouse.ID,
 	// сортировка уже идет с сервера
 	// sortComparer: (a, b) => a.title.localeCompare(b.title),
 });

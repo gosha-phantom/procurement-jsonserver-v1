@@ -3,15 +3,15 @@ import {
 	getProcOrders,
 	getProcOrdersByUserID,
 	procOrdersReducer,
-	ProcOrdersTable,
 	selectProcOrdersAll,
 	selectProcOrdersError,
 	selectProcOrdersIsLoading,
 } from 'entities/ProcOrders';
+import { ProcOrdersTable } from 'features/ProcOrdersTable';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames, DynamicModuleLoader, ReducersList, useAppDispatch } from 'shared/lib';
-import { Button, ButtonThemeTypes, SimpleInput, Text, TextSize, VStack } from 'shared/ui';
+import { Button, ButtonThemeEnum, SimpleInput, Text, TextSizeEnum, VStack } from 'shared/ui';
 import classes from './ProcOrdersPage.module.scss';
 
 interface ProcOrdersPageProps {
@@ -47,7 +47,7 @@ const ProcOrdersPage = (props: ProcOrdersPageProps) => {
 		<DynamicModuleLoader reducers={reducers}>
 			<main className={classNames(classes.ProcOrdersPage, {}, [className])}>
 				<VStack as={'section'} align={'center'} gap={'32'}>
-					<Text size={TextSize.LARGE}>Таблица заказов на закупку</Text>
+					<Text size={TextSizeEnum.LARGE}>Таблица заказов на закупку</Text>
 					<VStack gap={'8'} maxWidth={false} align={'center'}>
 						<SimpleInput
 							type="checkbox"
@@ -57,16 +57,16 @@ const ProcOrdersPage = (props: ProcOrdersPageProps) => {
 								setMyOrders(Boolean(e.target.checked));
 							}}
 						/>
-						<Text disabled={checkMyOrderDisabled} size={TextSize.MEDIUM}>Показать мои заявки</Text>
+						<Text disabled={checkMyOrderDisabled} size={TextSizeEnum.MEDIUM}>Показать мои заявки</Text>
 						<Button
 							disabled={checkMyOrderDisabled}
-							theme={ButtonThemeTypes.ROUNDED}
+							theme={ButtonThemeEnum.ROUNDED}
 							className={classes.buttonRefresh}
 							onClick={onRefreshBtnClick}
 						>Обновить данные</Button>
 					</VStack>
 				</VStack>
-				{error && <Text color={'red'} size={TextSize.MEDIUM}>{error}</Text>}
+				{error && <Text color={'red'} size={TextSizeEnum.MEDIUM}>{error}</Text>}
 				{!error && (
 					<ProcOrdersTable
 						myOrders={myOrders}

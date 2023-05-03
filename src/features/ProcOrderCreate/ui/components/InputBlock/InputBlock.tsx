@@ -1,4 +1,11 @@
-import { DebouncedInput, InputWidthTypes, SimpleInputThemeTypes, SimpleInputWidthTypes, Text, VStack, } from 'shared/ui';
+import {
+	DebouncedInput,
+	SimpleInputElements,
+	SimpleInputThemeEnum,
+	SimpleInputWidthEnum,
+	Text,
+	VStack,
+} from 'shared/ui';
 import classes from './InputBlock.module.scss';
 
 interface InputBlockProps {
@@ -7,42 +14,31 @@ interface InputBlockProps {
     inputValue?: string | number;
     onChange?: (value: string | number) => void;
     delay?: number;
-    inputWidth?: SimpleInputWidthTypes;
+    inputWidth?: SimpleInputWidthEnum;
     type?: string;
     min?: string;
     max?: string;
+    as?: SimpleInputElements;
+    rows?: number;
 }
 
 export const InputBlock = (props: InputBlockProps) => {
 	const {
-		label,
-		disabled,
+		label, disabled, min, max, onChange, rows,
 		inputValue = '',
-		onChange,
 		delay = 0,
 		inputWidth,
 		type = 'text',
-		min,
-		max
+		as = 'input'
 	} = props;
 
 	return (
 		<VStack gap={'8'} maxWidth>
 			<Text className={classes.text}>{label}:</Text>
-			{/*<Input*/}
-			{/*	theme={InputThemeTypes.ROUNDED}*/}
-			{/*	value={inputValue}*/}
-			{/*	onChange={onChange}*/}
-			{/*	disabled={disabled}*/}
-			{/*	delay={delay}*/}
-			{/*	width={inputWidth}*/}
-			{/*	type={type}*/}
-			{/*	min={min}*/}
-			{/*	max={max}*/}
-			{/*/>*/}
 			<DebouncedInput
+				className={classes.input}
 				value={inputValue}
-				theme={SimpleInputThemeTypes.ROUNDED}
+				theme={SimpleInputThemeEnum.ROUNDED}
 				disabled={disabled}
 				onChange={onChange}
 				delay={delay}
@@ -50,6 +46,8 @@ export const InputBlock = (props: InputBlockProps) => {
 				type={type}
 				min={min}
 				max={max}
+				as={as}
+				rows={rows}
 			/>
 		</VStack>
 	);

@@ -3,13 +3,13 @@ import { ChangeEvent, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
 	Button,
-	ButtonThemeTypes,
+	ButtonThemeEnum,
 	Select,
 	SimpleInput,
-	SimpleInputTextAlignTypes,
-	SimpleInputThemeTypes, VStack
+	SimpleInputTextAlignEnum,
+	SimpleInputThemeEnum, VStack
 } from 'shared/ui';
-import { SelectOption } from 'shared/ui/Select/Select';
+import { SelectOptionType } from 'shared/ui/Select/Select';
 import classes from './Pagination.module.scss';
 
 interface PaginationProps {
@@ -24,22 +24,22 @@ export const Pagination = memo((props: PaginationProps) => {
 	return (
 		<VStack gap={'8'} align={'center'} className={classNames('', {}, [className])}>
 			<Button
-				theme={ButtonThemeTypes.ROUNDED}
+				theme={ButtonThemeEnum.ROUNDED}
 				onClick={() => table.setPageIndex(0)}
 				disabled={!table.getCanPreviousPage()}
 			>{'<<'}</Button>
 			<Button
-				theme={ButtonThemeTypes.ROUNDED}
+				theme={ButtonThemeEnum.ROUNDED}
 				onClick={() => table.previousPage()}
 				disabled={!table.getCanPreviousPage()}
 			>{'<'}</Button>
 			<Button
-				theme={ButtonThemeTypes.ROUNDED}
+				theme={ButtonThemeEnum.ROUNDED}
 				onClick={() => table.nextPage()}
 				disabled={!table.getCanNextPage()}
 			>{'>'}</Button>
 			<Button
-				theme={ButtonThemeTypes.ROUNDED}
+				theme={ButtonThemeEnum.ROUNDED}
 				onClick={() => table.setPageIndex(table.getPageCount()-1)}
 				disabled={!table.getCanNextPage()}
 			>{'>>'}</Button>
@@ -48,8 +48,8 @@ export const Pagination = memo((props: PaginationProps) => {
 			<SimpleInput
 				className={classes['w-5-rem']}
 				type="number"
-				theme={SimpleInputThemeTypes.ROUNDED}
-				textAlign={SimpleInputTextAlignTypes.CENTER}
+				theme={SimpleInputThemeEnum.ROUNDED}
+				textAlign={SimpleInputTextAlignEnum.CENTER}
 				defaultValue={table.getState().pagination.pageIndex + 1}
 				onChange={(e: ChangeEvent<HTMLInputElement>) => {
 					const page = e.target.value ? Number(e.target.value) - 1 : 0;
@@ -63,7 +63,7 @@ export const Pagination = memo((props: PaginationProps) => {
 					table.setPageSize(Number(e.target.value));
 				}}
 				options={selectPageSizes.map((value: number) => {
-					return { key: value.toString(), value: value.toString() } as SelectOption;
+					return { key: value.toString(), value: value.toString() } as SelectOptionType;
 				})}
 				label={'Показать строк:'}
 			/>

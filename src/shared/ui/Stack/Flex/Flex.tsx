@@ -63,7 +63,7 @@ type FlexAdditionalProps<Type extends FlexElements | ComponentType> =
 
 export type FlexProps<Type extends FlexElements | ComponentType> = {
     className?: string;
-    children: ReactNode;
+    children?: ReactNode;
     justify?: FlexJustify,
     align?: FlexAlign;
     alignContent?: FlexAlignContent;

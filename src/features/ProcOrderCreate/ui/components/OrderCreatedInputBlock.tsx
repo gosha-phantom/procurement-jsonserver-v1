@@ -1,16 +1,16 @@
 import { useRef } from 'react';
-import { SimpleInputWidthTypes } from 'shared/ui';
+import { SimpleInputWidthEnum } from 'shared/ui';
 import { formatDate } from 'shared/lib';
 import { InputBlock } from './InputBlock/InputBlock';
 
 export const OrderCreatedInputBlock = () => {
-	const value = useRef<string>(new Date().toISOString());
+	const value = useRef<string>(formatDate(new Date(), { formatType: 'yyyy-MM-dd' }));
 
 	return (
 		<InputBlock
 			label={'Заявка создана'}
-			inputValue={formatDate(value.current, {})}
-			inputWidth={SimpleInputWidthTypes.QUARTER_WIDTH}
+			inputValue={value.current}
+			inputWidth={SimpleInputWidthEnum.QUARTER_WIDTH}
 			disabled={true}
 		/>
 	);

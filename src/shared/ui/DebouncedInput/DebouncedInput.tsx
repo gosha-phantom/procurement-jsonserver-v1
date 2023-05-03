@@ -1,14 +1,14 @@
-import React, { memo } from 'react';
-import { SimpleInput, SimpleInputProps } from '../Input/SimpleInput';
+import React, { ChangeEvent, ComponentType, forwardRef, memo, Ref } from 'react';
+import { SimpleInput, SimpleInputProps, SimpleInputElements } from '../Input/SimpleInput';
 
 interface DebounceInputProps {
     value: string | number;
-    onChange?: (value: string | number) => void
-    delay?: number
+    onChange?: (value: string | number) => void;
+    delay?: number;
 }
 
 // type DebounceInputType = DebounceInputProps & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>
-type DebounceInputType = DebounceInputProps & Omit<SimpleInputProps, 'onChange'>
+type DebounceInputType = DebounceInputProps & Omit<SimpleInputProps<any>, 'onChange'>
 
 export const DebouncedInput = memo((props: DebounceInputType) => {
 	const {
@@ -32,6 +32,6 @@ export const DebouncedInput = memo((props: DebounceInputType) => {
 	}, [value, delay]);
 
 	return (
-		<SimpleInput {...otherProps} value={value} onChange={e => setValue(e.target.value)}/>
+		<SimpleInput {...otherProps} value={value} onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}/>
 	);
 });

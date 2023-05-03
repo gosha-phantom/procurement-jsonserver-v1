@@ -18,7 +18,7 @@ import {
 import { Pagination } from '../Pagination/Pagination';
 import { TableComponent } from '../TableComponent/TableComponent';
 import { tableFuzzyFilter } from '../../model/ttable.services';
-import { DebouncedInput, SimpleInputThemeTypes, HStack, VStack } from 'shared/ui';
+import { DebouncedInput, SimpleInputThemeEnum, HStack, VStack } from 'shared/ui';
 
 import classes from './TSortAndFilterTable.module.scss';
 
@@ -88,7 +88,7 @@ export const TSortAndFilterTable = (props: TSortAndFilterTableProps<any>) => {
 				placeholder={'Поиск по всей таблице...'}
 				value={globalFilter ?? ''}
 				onChange={value => setGlobalFilter(String(value))}
-				theme={SimpleInputThemeTypes.ROUNDED}
+				theme={SimpleInputThemeEnum.ROUNDED}
 				delay={500}
 			/>
 			{usePaginate && <Pagination table={table} selectPageSizes={selectPageSizes} />}

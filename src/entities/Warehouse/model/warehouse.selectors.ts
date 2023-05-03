@@ -11,3 +11,8 @@ export const [useSelectWarehousesIsLoading, selectWarehousesIsLoading] = buildSe
 export const [useSelectWarehousesError, selectWarehousesError] = buildSelector((state: StateSchema) => state.warehouses?.error || undefined);
 export const [useSelectWarehousesAll, selectWarehousesAll] = buildSelector(selectWarehouses.selectAll);
 export const selectWarehouseById = (id: number) => (state: StateSchema) => selectWarehouses.selectById(state, id);
+
+// export const selectWarehouseById = (id: number) => {
+// 	const [useSelectWarehouseByID, selectWarehouseById] = buildSelector((state: StateSchema) => selectWarehouses.selectById(state, id));
+// 	return [useSelectWarehouseByID, selectWarehouseById];
+// };

@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import axios from 'axios';
 import { memo, useEffect, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Table, Text, TextSize } from 'shared/ui';
+import { Table, Text, TextSizeEnum } from 'shared/ui';
 
 import classes from './TemplatePage2.module.scss';
 
@@ -95,7 +95,7 @@ const TemplatePage2 = (props: TemplatePageProps) => {
 
 	return (
 		<div className={classNames(classes.TemplatePage2, {}, [className])}>
-			<Text size={TextSize.LARGE}>Тестовая страница 2!!!</Text>
+			<Text size={TextSizeEnum.LARGE}>Тестовая страница 2!!!</Text>
 			<Table tableData={data} tableColumns={tableColumns}/>
 		</div>
 	);

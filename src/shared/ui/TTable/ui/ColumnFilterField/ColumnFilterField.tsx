@@ -1,7 +1,7 @@
 import { Column, Table } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { ReactComponent as ClearIcon } from 'shared/assets/icons/delete-left.svg';
-import { DebouncedInput, SimpleInputThemeTypes, VStack } from 'shared/ui';
+import { DebouncedInput, SimpleInputThemeEnum, VStack } from 'shared/ui';
 import classes from './ColumnFilterField.module.scss';
 
 interface ColumnFilterFieldProps {
@@ -28,7 +28,7 @@ export const ColumnFilterField = (props: ColumnFilterFieldProps) => {
 			<VStack>
 				<DebouncedInput
 					className={classes.inputNumber}
-					theme={SimpleInputThemeTypes.ROUNDED}
+					theme={SimpleInputThemeEnum.ROUNDED}
 					type="number"
 					min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
 					max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
@@ -44,7 +44,7 @@ export const ColumnFilterField = (props: ColumnFilterFieldProps) => {
 				/>
 				<DebouncedInput
 					className={classes.inputNumber}
-					theme={SimpleInputThemeTypes.ROUNDED}
+					theme={SimpleInputThemeEnum.ROUNDED}
 					type="number"
 					min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
 					max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
@@ -69,7 +69,7 @@ export const ColumnFilterField = (props: ColumnFilterFieldProps) => {
 				<DebouncedInput
 					className={classes.input}
 					type="text"
-					theme={SimpleInputThemeTypes.ROUNDED}
+					theme={SimpleInputThemeEnum.ROUNDED}
 					value={(columnFilterValue ?? '') as string}
 					onChange={value => column.setFilterValue(value)}
 					placeholder={`Поиск..(${column.getFacetedUniqueValues().size})`}

@@ -12,5 +12,3 @@ export {
 	selectProcOrdersIsLoading, selectProcOrdersError,
 	selectProcOrdersAll, selectProcOrdersById, selectProcOrdersMyOrders
 } from './model/procOrders.selectors';
-
-export { ProcOrdersTable } from './ui/procOrdersTable/ProcOrdersTable';

@@ -6,15 +6,13 @@ type FormatDateOptions = {
     firstLetterUpperCase?: boolean;
 }
 
-export const formatDate = (dt: string, options: FormatDateOptions = {}) => {
+export const formatDate = (dt: Date, options: FormatDateOptions = {}) => {
 	const {
 		formatType = 'eeeeee yyyy-MM-dd',
 		firstLetterUpperCase = true
 	} = options;
 
-	console.log(options);
-
-	let formattedDate = format(parseISO(dt), formatType, { locale: ru });
+	let formattedDate = format(parseISO(dt.toISOString()), formatType, { locale: ru });
 	if (firstLetterUpperCase) {
 		formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1,);
 	}

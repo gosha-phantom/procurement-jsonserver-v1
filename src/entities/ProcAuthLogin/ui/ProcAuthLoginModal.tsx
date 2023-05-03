@@ -1,18 +1,18 @@
-import { FormEvent, memo, useCallback, useEffect, useRef, useState } from 'react';
+import { ComponentType, FormEvent, memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ReactComponent as IRLogoFull } from 'shared/assets/logo/ir-full-logo-color.svg';
 import { classNames, useAppDispatch } from 'shared/lib';
 import {
 	Button,
-	ButtonThemeTypes,
+	ButtonThemeEnum,
 	HStack,
 	Loader,
 	LoaderSize,
 	Modal,
 	SimpleInput,
-	SimpleInputThemeTypes,
+	SimpleInputThemeEnum,
 	Text,
-	TextSize,
+	TextSizeEnum,
 	VStack,
 } from 'shared/ui';
 import {
@@ -31,8 +31,8 @@ interface ProcAuthLoginModalProps {
 
 export const ProcAuthLoginModal = memo((props: ProcAuthLoginModalProps) => {
 	const { className, isOpen, setIsOpen } = props;
-	const loginRef = useRef<HTMLInputElement | null>(null);
-	const passwordRef = useRef<HTMLInputElement | null>(null);
+	const loginRef = useRef<HTMLInputElement>(null);
+	const passwordRef = useRef<HTMLInputElement>(null);
 	const [inputError, setInputError] = useState<string>('');
 	const [isBtnAuthLoginClicked, setIsBtnAuthLoginClicked ] = useState<boolean>(false);
 
@@ -78,7 +78,7 @@ export const ProcAuthLoginModal = memo((props: ProcAuthLoginModalProps) => {
 		>
 			<HStack gap={'16'} justify={'center'} align={'center'} className={classes.modalContainer} maxWidth>
 				<IRLogoFull />
-				<Text size={TextSize.LARGE}>Авторизация пользователя</Text>
+				<Text size={TextSizeEnum.LARGE}>Авторизация пользователя</Text>
 				<HStack
 					as="form"
 					align={'center'}
@@ -88,7 +88,7 @@ export const ProcAuthLoginModal = memo((props: ProcAuthLoginModalProps) => {
 					<VStack gap={'8'} align={'center'} justify={'center'} maxWidth>
 						<label className={classes.formInputLabel} htmlFor="login">Логин</label>
 						<SimpleInput
-							theme={SimpleInputThemeTypes.ROUNDED}
+							theme={SimpleInputThemeEnum.ROUNDED}
 							id="login"
 							placeholder={'Введите логин'}
 							className={classes.formInput}
@@ -99,7 +99,7 @@ export const ProcAuthLoginModal = memo((props: ProcAuthLoginModalProps) => {
 					<VStack gap={'8'} align={'center'} justify={'center'} maxWidth>
 						<label className={classes.formInputLabel} htmlFor="password">Пароль</label>
 						<SimpleInput
-							theme={SimpleInputThemeTypes.ROUNDED}
+							theme={SimpleInputThemeEnum.ROUNDED}
 							id="password"
 							placeholder={'Введите пароль'}
 							type="password"
@@ -109,20 +109,20 @@ export const ProcAuthLoginModal = memo((props: ProcAuthLoginModalProps) => {
 						/>
 					</VStack>
 					{(inputError || error) && (
-						<Text className={classes.errors} size={TextSize.MEDIUM}>
+						<Text className={classes.errors} size={TextSizeEnum.MEDIUM}>
 							{inputError ? inputError : error}
 						</Text>
 					)}
 					<VStack gap={'8'} justify={'center'} align={'center'} className={classes.formButtons}>
 						<Button
 							className={classes.formButton}
-							theme={ButtonThemeTypes.ROUNDED}
+							theme={ButtonThemeEnum.ROUNDED}
 							onClick={onBtnLoginClick}
 							disabled={isBtnAuthLoginClicked}
 						>{isLoading ? <Loader size={LoaderSize.MEDIUM}/> : 'Авторизация'}</Button>
 						<Button
 							className={classes.formButton}
-							theme={ButtonThemeTypes.ROUNDED}
+							theme={ButtonThemeEnum.ROUNDED}
 							onClick={setIsOpen}
 						>Отмена</Button>
 					</VStack>

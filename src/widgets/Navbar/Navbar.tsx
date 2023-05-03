@@ -3,7 +3,7 @@ import { memo, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ReactComponent as CompanyLogo } from 'shared/assets/icons/some-logo.svg';
 import { classNames, useAppDispatch } from 'shared/lib';
-import { Button, ButtonThemeTypes } from 'shared/ui';
+import { Button, ButtonThemeEnum } from 'shared/ui';
 import classes from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -27,8 +27,8 @@ export const Navbar = memo((props: NavbarProps) => {
 			<div className={classes.title}>COMPANY NAME</div>
 			<div className={classes.links}>
 				{!authData
-					? <Button theme={ButtonThemeTypes.CLEAR} onClick={() => setAuthModalIsOpen(true)} >Sign IN</Button>
-					: <Button theme={ButtonThemeTypes.CLEAR} onClick={btnLogOutClick} >Log OUT</Button>
+					? <Button theme={ButtonThemeEnum.CLEAR} onClick={() => setAuthModalIsOpen(true)} >Sign IN</Button>
+					: <Button theme={ButtonThemeEnum.CLEAR} onClick={btnLogOutClick} >Log OUT</Button>
 				}
 			</div>
 		</header>

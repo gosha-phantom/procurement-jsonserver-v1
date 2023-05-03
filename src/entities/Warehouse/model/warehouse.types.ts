@@ -1,7 +1,7 @@
 import { EntityState } from '@reduxjs/toolkit';
 
 export interface Warehouse {
-    id: number;
+    ID: number;
     title: string;
 }
 

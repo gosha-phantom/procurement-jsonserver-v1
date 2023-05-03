@@ -1,5 +1,5 @@
 import { ProcOrder } from 'entities/ProcOrders';
-import {} from 'entities/ProcOrders/ui/procOrdersTable/ProcOrdersTable';
+import {} from 'entities/../../../../features/ProcOrdersTable/procOrdersTable/ProcOrdersTable';
 
 export interface TableHeaders {
     key: string;

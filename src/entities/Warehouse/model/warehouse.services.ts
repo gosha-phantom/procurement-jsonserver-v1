@@ -7,7 +7,7 @@ export const getWarehouses = createAsyncThunk<Warehouse[], void, ThunkConfig<str
 	'warehouses/getWarehouseList',
 	async(_, thunkApi) => {
 		try {
-			const response = await axiosInstance.get<Warehouse[]>('/proc/v1/warehouse');
+			const response = await axiosInstance.get<Warehouse[]>('/proc/v1/warehouses');
 
 			if (!response.data) { throw new Error('Axios error by getting warehouses from DB!'); }
 

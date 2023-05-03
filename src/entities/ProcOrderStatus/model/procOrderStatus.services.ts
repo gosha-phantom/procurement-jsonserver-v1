@@ -7,10 +7,11 @@ export const getProcOrderStatus = createAsyncThunk<ProcOrderStatus[], void, Thun
 	'status/getProcOrderStatus',
 	async(_, thunkApi) => {
 		try {
-			const response = await axiosInstance.get<ProcOrderStatus[]>('/procOrderState');
+			const response = await axiosInstance.get<ProcOrderStatus[]>('/proc/v1/statuses');
 
 			if (!response.data) { throw new Error('Axios error by getting procurement orders statuses from DB!'); }
 
+			// console.log('Response data: ', response.data);
 			return response.data;
 		} catch(error) {
 			console.log(error);

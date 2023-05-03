@@ -1,5 +1,6 @@
 .Input {
     padding: 0 0.25rem;
+    color: var(--primary-color);
 }
 .theme-clear, .theme-underlined {
     border: none;
@@ -75,4 +76,8 @@
 
 .quarter-width {
     width: 25%;
+}
+
+:disabled {
+    opacity: var(--disabled-opacity);
 }

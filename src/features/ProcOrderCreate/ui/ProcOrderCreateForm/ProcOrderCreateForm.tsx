@@ -1,19 +1,20 @@
+import { FormEvent, memo, MutableRefObject, Ref, RefObject, useRef } from 'react';
+
 import { BuyTillInputBlock } from 'features/ProcOrderCreate/ui/components/BuyTillInputBlock';
 import { OrderCreatedInputBlock } from 'features/ProcOrderCreate/ui/components/OrderCreatedInputBlock';
-import { memo } from 'react';
-import { warehousesReducer } from 'entities/Warehouse';
-import { DynamicModuleLoader } from 'shared/lib';
-import { classNames, ReducersList } from 'shared/lib';
-import { HStack, Input, InputThemeTypes, Text, VStack } from 'shared/ui';
-import { UserInputBlock } from '../components/UserInputBlock';
-import { TitleInputBlock } from '../components/TitleInputBlock';
+import { useSelectProcAuthData } from 'entities/ProcAuthLogin';
+import { classNames } from 'shared/lib';
+import { Button, ButtonThemeEnum, HStack, VStack } from 'shared/ui';
+
+import { DescriptionInputBlock } from '../components/DescriptionInputBlock';
 import { ProjectInputBlock } from '../components/ProjectInputBlock';
+import { StatusSelectBlock } from '../components/StatusSelectBlock';
+import { TitleInputBlock } from '../components/TitleInputBlock';
+import { UserInputBlock } from '../components/UserInputBlock';
+import { WarehouseSelectBlock } from '../components/WarehouseSelectBlock';
+
 import classes from './ProcOrderCreateForm.module.scss';
 
-const reducers: ReducersList = {
-	// procOrderCreate: procOrderCreateReducer,
-	warehouses: warehousesReducer,
-};
 
 interface ProcOrderCreateFormProps {
     className?: string;
@@ -22,30 +23,37 @@ interface ProcOrderCreateFormProps {
 export const ProcOrderCreateForm = memo((props: ProcOrderCreateFormProps) => {
 	const { className } = props;
 
+	// const user = useSelectProcAuthData();
+	const titleRef = useRef<string | number>(null);
+	// const projectRef = useRef<string | null>(null);
+	// const dateCreatedRef = useRef<string | null>(null);
+	// const buyTillRef = useRef<string | null>(null);
+	// const statusRef = useRef<string | null>(null);
+	// const warehouseRef = useRef<string | null>(null);
+	// const descriptionRef = useRef<string | null>(null);
+
+	const onSubmitHandler = (e: FormEvent) => { e.preventDefault(); };
+
+	// console.log((titleRef.current));
+
 	return (
-		<DynamicModuleLoader reducers={reducers}>
-			<HStack maxWidth gap={'8'} className={classNames(classes.ProcOrderCreateForm, {}, [className])}>
-				<HStack className={classes.inputBlock}>
-					<UserInputBlock />
-					<TitleInputBlock />
+		<HStack maxWidth gap={'16'} className={classNames(classes.ProcOrderCreateForm, {}, [className])}>
+			<VStack as={'form'} gap={'16'} className={classes.order} onSubmit={onSubmitHandler}>
+				<HStack className={classes.inputBlock} maxWidth>
+					<UserInputBlock/>
+					<TitleInputBlock ref={titleRef}/>
 					<ProjectInputBlock />
 					<OrderCreatedInputBlock />
 					<BuyTillInputBlock />
-					<VStack>
-						<Text className={classes.text}>Статус заявки:</Text>
-						<Input theme={InputThemeTypes.ROUNDED} />
-					</VStack>
-					<VStack>
-						<Text className={classes.text}>Склад (куда везти):</Text>
-						<Input theme={InputThemeTypes.ROUNDED} />
-					</VStack>
-					<VStack>
-						<Text className={classes.text}>Обоснование закупки:</Text>
-						<Input theme={InputThemeTypes.ROUNDED} />
-					</VStack>
+					<StatusSelectBlock />
+					<WarehouseSelectBlock />
+					<DescriptionInputBlock />
 				</HStack>
-			</HStack>
-		</DynamicModuleLoader>
-
+				<HStack className={classes.buttons} gap={'8'} maxWidth>
+					<Button type={'submit'} className={classes.button} theme={ButtonThemeEnum.ROUNDED}>Создать заявку</Button>
+					<Button className={classes.button} theme={ButtonThemeEnum.ROUNDED}>Отклонить заявку</Button>
+				</HStack>
+			</VStack>
+		</HStack>
 	);
 });

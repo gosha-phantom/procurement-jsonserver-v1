@@ -11,10 +11,11 @@ export interface StateSchema {
     procAuthLogin: ProcAuthLoginSchema;
     counter: CounterSchema;
 
-    procOrders?: ProcOrderSchema;
-    procOrderCreate?: ProcOrderCreateSchema;
     warehouses?: WarehouseSchema;
     procOrderStatus?: ProcOrderStatusSchema;
+
+    procOrders?: ProcOrderSchema;
+    procOrderCreate?: ProcOrderCreateSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

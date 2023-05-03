@@ -1,5 +1,5 @@
 .ProcOrderCreateForm {
-
+    max-width: 100%;
 }
 
 .text {
@@ -9,4 +9,20 @@
 
 .inputBlock {
     max-width: 64rem;
+}
+
+.buttons {
+    height: 100%;
+    max-width: 10rem;
+    margin-right: auto;
+}
+
+.order {
+    height: 100%;
+}
+
+.button {
+    max-width: 15rem;
+    min-width: 10rem;
+    padding: 0.5rem;
 }

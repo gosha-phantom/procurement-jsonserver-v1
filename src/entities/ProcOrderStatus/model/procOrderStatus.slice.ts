@@ -1,18 +1,20 @@
-import { createSlice, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { buildSlice } from 'shared/lib';
 import { StateSchema } from 'shared/config/stateConfig/StateSchema';
 import { ProcOrderStatus, ProcOrderStatusSchema } from './procOrderStatus.types';
 import { getProcOrderStatus } from './procOrderStatus.services';
 
 const procOrderStatusAdapter = createEntityAdapter<ProcOrderStatus>({
-	selectId: (status) => status.id,
-	sortComparer: (a, b) => a.id.toString().localeCompare(b.id.toString()),
+	selectId: (status) => status.ID,
+	// сортировка уже реализована на сервере
+	// sortComparer: (a, b) => a.ID.toString().localeCompare(b.ID.toString()),
 });
 
 export const selectProcOrderStatus = procOrderStatusAdapter.getSelectors<StateSchema>(
 	(state) => state.procOrderStatus || procOrderStatusAdapter.getInitialState(),
 );
 
-const procOrderStatusSlice = createSlice({
+const procOrderStatusSlice = buildSlice({
 	name: 'procOrderStatusSlice',
 	initialState: procOrderStatusAdapter.getInitialState<ProcOrderStatusSchema>({
 		isLoading: false,
@@ -41,4 +43,5 @@ const procOrderStatusSlice = createSlice({
 export const {
 	reducer: procOrderStatusReducer,
 	actions: procOrderStatusActions,
+	useActions: useProcOrderStatusActions,
 } = procOrderStatusSlice;

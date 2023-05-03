@@ -3,9 +3,9 @@ import { CellContext } from '@tanstack/react-table';
 import { ReactComponent as DeleteIcon } from 'shared/assets/icons/delete-2.svg';
 import { ReactComponent as EditIcon } from 'shared/assets/icons/edit-major.svg';
 import { useAppDispatch } from 'shared/lib';
-import { Button, ButtonThemeTypes, VStack } from 'shared/ui';
-import { deleteProcOrdersByOrderID } from '../../model/procOrders.services';
-import { ProcOrder } from '../../model/procOrders.types';
+import { Button, ButtonThemeEnum, VStack } from 'shared/ui';
+import { deleteProcOrdersByOrderID } from 'entities/ProcOrders/model/procOrders.services';
+import { ProcOrder } from 'entities/ProcOrders/model/procOrders.types';
 
 interface procOrdersTableButtonsProps {
     className?: string;
@@ -36,12 +36,12 @@ export const ProcOrdersTableButtons = memo((props: procOrdersTableButtonsProps) 
 	return (
 		<VStack align={'center'} gap={'8'}>
 			{!disableEdit && (
-				<Button disabled={disableEdit} theme={ButtonThemeTypes.CLEAR}><EditIcon /></Button>
+				<Button disabled={disableEdit} theme={ButtonThemeEnum.CLEAR}><EditIcon /></Button>
 			)}
 			{!disableDelete && visibleDeleteButton && (
 				<Button
 					disabled={disableDelete}
-					theme={ButtonThemeTypes.CLEAR}
+					theme={ButtonThemeEnum.CLEAR}
 					onClick={onDeleteBtnClick}
 				><DeleteIcon /></Button>
 			)}

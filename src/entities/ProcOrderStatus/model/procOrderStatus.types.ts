@@ -1,7 +1,7 @@
 import { EntityState } from '@reduxjs/toolkit';
 
 export interface ProcOrderStatus {
-    id: number;
+    ID: number;
     title: string;
 }
 

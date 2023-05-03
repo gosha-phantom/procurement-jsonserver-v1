@@ -61,13 +61,13 @@ export const ProcOrdersTable = (props: ProcOrdersTableProps) => {
 		{
 			accessorKey: 'dateCreated',
 			header: 'Дата заявки',
-			cell: cellProps => formatDate(cellProps.cell.getValue() as string),
+			cell: cellProps => formatDate(new Date(cellProps.cell.getValue() as Date)),
 			footer: cellProps => cellProps.column.id,
 		},
 		{
 			accessorKey: 'dateNeed',
 			header: 'Закупить до',
-			cell: cellProps => formatDate(cellProps.cell.getValue() as string),
+			cell: cellProps => formatDate(new Date(cellProps.cell.getValue() as Date)),
 			footer: cellProps => cellProps.column.id,
 		},
 		{

@@ -2,16 +2,16 @@ import { memo, ReactNode } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import classes from './Text.module.scss';
 
-export enum TextSize {
+export enum TextSizeEnum {
     SMALL = 'text-small',
     MEDIUM = 'text-medium',
     LARGE = 'text-large',
     XL = 'text-xl',
 }
 
-export type TextColor = 'red' | 'primary'
+export type TextColorType = 'red' | 'primary'
 
-const TextColorClasses: Record<TextColor, string> = {
+const TextColorClasses: Record<TextColorType, string> = {
 	red: 'color-red',
 	primary: 'color-primary'
 };
@@ -19,14 +19,14 @@ const TextColorClasses: Record<TextColor, string> = {
 interface TextProps {
     className?: string;
     children?: ReactNode;
-    size?: TextSize;
+    size?: TextSizeEnum;
     disabled?: boolean;
-    color?: TextColor;
+    color?: TextColorType;
 }
 
 export const Text = memo((props: TextProps) => {
 	const {
-		className, size = TextSize.MEDIUM, children, disabled, color = 'primary'
+		className, size = TextSizeEnum.MEDIUM, children, disabled, color = 'primary'
 	} = props;
 
 	const mods: Mods = {

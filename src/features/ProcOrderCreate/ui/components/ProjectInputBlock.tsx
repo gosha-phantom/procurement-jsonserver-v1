@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SimpleInputWidthTypes } from 'shared/ui';
+import { SimpleInputWidthEnum } from 'shared/ui';
 import { InputBlock } from './InputBlock/InputBlock';
 
 export const ProjectInputBlock = () => {
@@ -11,7 +11,7 @@ export const ProjectInputBlock = () => {
 			inputValue={value}
 			onChange={(e) => setValue(e)}
 			delay={500}
-			inputWidth={SimpleInputWidthTypes.QUARTER_WIDTH}
+			inputWidth={SimpleInputWidthEnum.QUARTER_WIDTH}
 		/>
 	);
 };

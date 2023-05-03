@@ -1,27 +1,23 @@
 import { useRef, useState } from 'react';
-import { SimpleInputWidthTypes } from 'shared/ui';
+import { SimpleInputWidthEnum } from 'shared/ui';
 import { formatDate, addDaysToDate } from 'shared/lib';
 import { InputBlock } from './InputBlock/InputBlock';
 
-export const BuyTillInputBlock = () => {
-	const currentValue = useRef(addDaysToDate(new Date(), 5));
-	// const minDate = useRef<string>(formatDate(
-	// 	addDaysToDate(new Date(), 1).toLocaleDateString(),
-	// 	{ formatType: 'yyyy-MM-dd' })
-	// );
-	// const onChangeHandler = () => {
-	// 	console.log();};
+const formatType = 'yyyy-MM-dd';
 
-	console.log (new Date());
+export const BuyTillInputBlock = () => {
+	const currentValue = useRef<string>(formatDate(addDaysToDate(new Date(), 5), { formatType }));
+	const minDate = useRef<string>(formatDate(addDaysToDate(new Date(), 1), { formatType }));
+	const maxDate = useRef<string>(formatDate(addDaysToDate(new Date(), 45), { formatType }));
 
 	return (
 		<InputBlock
 			label={'Закупить до'}
-			inputValue={1}
-			inputWidth={SimpleInputWidthTypes.QUARTER_WIDTH}
+			inputValue={currentValue.current}
+			inputWidth={SimpleInputWidthEnum.QUARTER_WIDTH}
 			type={'date'}
-			// onChange={onChangeHandler}
-			// min={minDate.current}
+			min={minDate.current}
+			max={maxDate.current}
 		/>
 	);
 };
