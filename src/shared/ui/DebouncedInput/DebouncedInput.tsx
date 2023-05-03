@@ -3,7 +3,7 @@ import { SimpleInput, SimpleInputProps } from '../Input/SimpleInput';
 
 interface DebounceInputProps {
     value: string | number;
-    onChange: (value: string | number) => void
+    onChange?: (value: string | number) => void
     delay?: number
 }
 
@@ -23,7 +23,7 @@ export const DebouncedInput = memo((props: DebounceInputType) => {
 
 	React.useEffect(() => {
 		const timeout = setTimeout(() => {
-			onChange(value);
+			onChange?.(value);
 		}, delay);
 
 		return () => clearTimeout(timeout);

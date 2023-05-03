@@ -3,10 +3,10 @@ export { PageLoader } from './PageLoader/PageLoader';
 export { AppLink, AppLinkTheme } from './AppLink/AppLink';
 
 export { Text, TextSize } from './Text/Text';
-export { Input, InputThemeTypes, InputSizeTypes, InputBGColorTypes, InputTextAlignTypes } from './Input/Input';
+export { Input, InputThemeTypes, InputSizeTypes, InputBGColorTypes, InputTextAlignTypes, InputWidthTypes } from './Input/Input';
 export {
 	SimpleInput, type SimpleInputProps,
-	SimpleInputTextAlignTypes, SimpleInputBGColorTypes, SimpleInputSizeTypes, SimpleInputThemeTypes
+	SimpleInputTextAlignTypes, SimpleInputBGColorTypes, SimpleInputSizeTypes, SimpleInputThemeTypes, SimpleInputWidthTypes,
 } from './Input/SimpleInput';
 export { Select } from './Select/Select';
 export { Button, ButtonThemeTypes, ButtonSizeTypes } from './Button/Button';

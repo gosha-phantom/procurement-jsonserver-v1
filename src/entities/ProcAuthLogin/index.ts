@@ -11,6 +11,8 @@ export {
 export {
 	selectProcAuthDataAll, selectProcAuthDataError, selectProcAuthDataIsLoading,
 	selectProcAuthDataToken, selectProcAuthData,
+	useSelectProcAuthDataAll, useSelectProcAuthDataError, useSelectProcAuthDataIsLoading,
+	useSelectProcAuthDataToken, useSelectProcAuthData
 } from './model/procAuthLogin.selectors';
 
 export { ProcAuthLoginModal } from './ui/ProcAuthLoginModal';

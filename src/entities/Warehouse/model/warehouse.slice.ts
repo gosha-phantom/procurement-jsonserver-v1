@@ -1,6 +1,8 @@
 import { createSlice, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
 import { StateSchema } from 'shared/config/stateConfig/StateSchema';
 
+import { buildSlice } from 'shared/lib';
+
 import { Warehouse, WarehouseSchema } from './warehouse.types';
 import { getWarehouses } from './warehouse.services';
 
@@ -14,7 +16,7 @@ export const selectWarehouses = warehousesAdapter.getSelectors<StateSchema>(
 	(state) => state.warehouses || warehousesAdapter.getInitialState(),
 );
 
-const warehousesSlice = createSlice({
+const warehousesSlice = buildSlice({
 	name: 'warehousesSlice',
 	initialState: warehousesAdapter.getInitialState<WarehouseSchema>({
 		isLoading: false,
@@ -43,4 +45,5 @@ const warehousesSlice = createSlice({
 export const {
 	reducer: warehousesReducer,
 	actions: warehousesActions,
+	useActions: useWarehousesActions
 } = warehousesSlice;

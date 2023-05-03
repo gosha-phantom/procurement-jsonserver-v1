@@ -8,6 +8,12 @@ export enum InputSizeTypes {
     LARGE = 'size-large'
 }
 
+export enum InputWidthTypes {
+    MAX_WIDTH = 'max-width',
+    HALF_WIDTH = 'half-width',
+    QUARTER_WIDTH = 'quarter-width',
+}
+
 export enum InputThemeTypes {
     CLEAR = 'theme-clear',
     RED = 'theme-red',
@@ -38,6 +44,7 @@ export interface InputProps extends HTMLInputProps {
     value?: string | number;
     bg_color?: InputBGColorTypes;
     textAlign?: InputTextAlignTypes;
+    width?: InputWidthTypes;
     onChange?:(value: any) => void;
     delay?: number;
 }
@@ -50,6 +57,7 @@ export const Input = memo((props: InputProps) => {
 		size = InputSizeTypes.MEDIUM,
 		bg_color = InputBGColorTypes.NONE,
 		textAlign = InputTextAlignTypes.START,
+		width = InputWidthTypes.MAX_WIDTH,
 		delay = 0,
 		...otherProps
 	} = props;
@@ -71,6 +79,7 @@ export const Input = memo((props: InputProps) => {
 		[classes[size]]: true,
 		[classes[bg_color]]: true,
 		[classes[textAlign]]: true,
+		[classes[width]]: true,
 	};
 
 	return (

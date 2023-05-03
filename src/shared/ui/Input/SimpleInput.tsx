@@ -2,6 +2,12 @@ import { InputHTMLAttributes, memo, forwardRef, ForwardedRef } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import classes from './Input.module.scss';
 
+export enum SimpleInputWidthTypes {
+    MAX_WIDTH = 'max-width',
+    HALF_WIDTH = 'half-width',
+    QUARTER_WIDTH = 'quarter-width',
+}
+
 export enum SimpleInputSizeTypes {
     SMALL = 'size-small',
     MEDIUM = 'size-medium',
@@ -40,6 +46,7 @@ export interface SimpleInputProps extends HTMLSimpleInputProps {
     value?: string | number;
     bg_color?: SimpleInputBGColorTypes;
     textAlign?: SimpleInputTextAlignTypes;
+    width?: SimpleInputWidthTypes;
 }
 
 export const SimpleInput = memo(forwardRef((props: SimpleInputProps, ref: ForwardedRef<HTMLInputElement>) => {
@@ -50,6 +57,7 @@ export const SimpleInput = memo(forwardRef((props: SimpleInputProps, ref: Forwar
 		size = SimpleInputSizeTypes.MEDIUM,
 		bg_color = SimpleInputBGColorTypes.NONE,
 		textAlign = SimpleInputTextAlignTypes.START,
+		width = SimpleInputWidthTypes.MAX_WIDTH,
 		...otherProps
 	} = props;
 
@@ -58,6 +66,7 @@ export const SimpleInput = memo(forwardRef((props: SimpleInputProps, ref: Forwar
 		[classes[size]]: true,
 		[classes[bg_color]]: true,
 		[classes[textAlign]]: true,
+		[classes[width]]: true,
 	};
 
 	return (

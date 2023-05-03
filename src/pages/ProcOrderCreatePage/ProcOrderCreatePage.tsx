@@ -1,38 +1,25 @@
 import { memo } from 'react';
-import { classNames, DynamicModuleLoader, ReducersList } from 'shared/lib';
-import { HStack } from 'shared/ui';
+import { classNames } from 'shared/lib';
+import { HStack, Text, TextSize } from 'shared/ui';
+import { ProcOrderCreateForm } from 'features/ProcOrderCreate';
 import classes from './ProcOrderCreatePage.module.scss';
-import { procOrderCreateReducer } from 'entities/ProcOrderCreate';
-import { warehousesReducer } from 'entities/Warehouse';
-import { useSelector } from 'react-redux';
-import { selectWarehouses } from 'entities/Warehouse/model/warehouse.slice';
 
 interface ProcOrderCreatePageProps {
     className?: string;
 }
 
-const reducers: ReducersList = {
-	// procOrderCreate: procOrderCreateReducer,
-	warehouses: warehousesReducer,
-};
-
 const ProcOrderCreatePage = memo((props: ProcOrderCreatePageProps) => {
-	const {
-		className,
-	} = props;
-	const warehouses = useSelector(selectWarehouses.selectAll);
-	console.log(warehouses);
+	const { className } = props;
 
 	return (
-		<DynamicModuleLoader reducers={reducers}>
-			<HStack
-				className={classNames(classes.ProcOrderCreatePage, {}, [className])}
-				as={'section'}
-				gap={'16'}
-			>
-				ProcOrderCreatePage
-			</HStack>
-		</DynamicModuleLoader>
+		<HStack
+			className={classNames(classes.ProcOrderCreatePage, {}, [className])}
+			as={'section'}
+			gap={'16'}
+		>
+			<Text size={TextSize.LARGE}>Новая заявка на закупку</Text>
+			<ProcOrderCreateForm className={classes.content} />
+		</HStack>
 	);
 });
 
