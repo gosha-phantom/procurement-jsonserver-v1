@@ -24,9 +24,7 @@ const RouterProvider = () => {
 					path={path}
 					element={(
 						<Suspense fallback={<PageLoader />}>
-							<main className="page-wrapper">
-								{element}
-							</main>
+							{element}
 						</Suspense>
 					)}
 				/>

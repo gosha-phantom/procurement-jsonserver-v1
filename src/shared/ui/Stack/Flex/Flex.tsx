@@ -70,6 +70,7 @@ export type FlexProps<Type extends FlexElements | ComponentType> = {
     direction?: FlexDirection;
     gap?: FlexGap;
     maxWidth?: boolean;
+    maxHeight?: boolean;
     as?: Type;
 } & FlexAdditionalProps<Type>;
 
@@ -81,7 +82,9 @@ export const Flex = <Type extends FlexElements | ComponentType<any> = 'div'>(pro
 		alignContent,
 		direction = 'row',
 		gap = '4',
-		maxWidth = true
+		maxWidth = true,
+		maxHeight = false,
+		...otherProps
 	} = props;
 
 	const Component = as || 'div';
@@ -98,11 +101,12 @@ export const Flex = <Type extends FlexElements | ComponentType<any> = 'div'>(pro
 	];
 
 	const mods: Mods = {
-		[classes.maxWidth]: maxWidth
+		[classes.maxWidth]: maxWidth,
+		[classes.maxHeight]: maxHeight
 	};
 
 	return (
-		<Component className={classNames(classes.flex, mods, cssClasses)}>
+		<Component className={classNames(classes.flex, mods, cssClasses)} {...otherProps}>
 			{children}
 		</Component>
 	);

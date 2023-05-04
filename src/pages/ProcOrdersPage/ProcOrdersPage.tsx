@@ -8,10 +8,10 @@ import {
 	selectProcOrdersIsLoading,
 } from 'entities/ProcOrders';
 import { ProcOrdersTable } from 'features/ProcOrdersTable';
-import { memo, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames, DynamicModuleLoader, ReducersList, useAppDispatch } from 'shared/lib';
-import { Button, ButtonThemeEnum, SimpleInput, Text, TextSizeEnum, VStack } from 'shared/ui';
+import { Button, ButtonThemeEnum, HStack, SimpleInput, Text, TextSizeEnum, VStack } from 'shared/ui';
 import classes from './ProcOrdersPage.module.scss';
 
 interface ProcOrdersPageProps {
@@ -45,19 +45,19 @@ const ProcOrdersPage = (props: ProcOrdersPageProps) => {
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>
-			<main className={classNames(classes.ProcOrdersPage, {}, [className])}>
-				<VStack as={'section'} align={'center'} gap={'32'}>
+			<HStack as={'main'} gap={'8'} maxWidth className={classNames(classes.ProcOrdersPage, {}, [className])}>
+				<VStack as={'section'} align={'center'} gap={'16'} maxWidth justify={'between'}>
 					<Text size={TextSizeEnum.LARGE}>Таблица заказов на закупку</Text>
-					<VStack gap={'8'} maxWidth={false} align={'center'}>
+					<VStack gap={'16'} maxWidth={false} align={'center'}>
 						<SimpleInput
 							type="checkbox"
 							checked={myOrders}
 							disabled={checkMyOrderDisabled}
-							onChange={(e) => {
+							onChange={(e: ChangeEvent<HTMLInputElement>) => {
 								setMyOrders(Boolean(e.target.checked));
 							}}
 						/>
-						<Text disabled={checkMyOrderDisabled} size={TextSizeEnum.MEDIUM}>Показать мои заявки</Text>
+						<Text noWrap disabled={checkMyOrderDisabled} size={TextSizeEnum.MEDIUM}>Показать мои заявки</Text>
 						<Button
 							disabled={checkMyOrderDisabled}
 							theme={ButtonThemeEnum.ROUNDED}
@@ -76,7 +76,7 @@ const ProcOrdersPage = (props: ProcOrdersPageProps) => {
 						authData={authData}
 					/>
 				)}
-			</main>
+			</HStack>
 		</DynamicModuleLoader>
 	);
 };

@@ -16,6 +16,7 @@ const ProcOrderCreatePage = memo((props: ProcOrderCreatePageProps) => {
 			className={classNames(classes.ProcOrderCreatePage, {}, [className])}
 			as={'section'}
 			gap={'16'}
+			maxHeight={true}
 		>
 			<Text size={TextSizeEnum.LARGE}>Новая заявка на закупку</Text>
 			<ProcOrderCreateForm className={classes.content} />

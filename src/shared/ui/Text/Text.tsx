@@ -9,11 +9,12 @@ export enum TextSizeEnum {
     XL = 'text-xl',
 }
 
-export type TextColorType = 'red' | 'primary'
+export type TextColorType = 'red' | 'primary' | 'green'
 
 const TextColorClasses: Record<TextColorType, string> = {
 	red: 'color-red',
-	primary: 'color-primary'
+	primary: 'color-primary',
+	green: 'color-green'
 };
 
 interface TextProps {
@@ -22,17 +23,19 @@ interface TextProps {
     size?: TextSizeEnum;
     disabled?: boolean;
     color?: TextColorType;
+    noWrap?: boolean;
 }
 
 export const Text = memo((props: TextProps) => {
 	const {
-		className, size = TextSizeEnum.MEDIUM, children, disabled, color = 'primary'
+		className, size = TextSizeEnum.MEDIUM, children, disabled, color = 'primary', noWrap = false
 	} = props;
 
 	const mods: Mods = {
 		[classes[size]]: true,
 		[classes.disabled]: disabled,
-		[classes[TextColorClasses[color]]]: true
+		[classes[TextColorClasses[color]]]: true,
+		[classes.noWrap]: noWrap
 	};
 
 	return (

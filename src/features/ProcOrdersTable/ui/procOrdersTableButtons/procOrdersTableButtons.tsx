@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 import { CellContext } from '@tanstack/react-table';
-import { ReactComponent as DeleteIcon } from 'shared/assets/icons/delete-2.svg';
-import { ReactComponent as EditIcon } from 'shared/assets/icons/edit-major.svg';
+import DeleteIcon from 'shared/assets/icons/delete-2.svg';
+import EditIcon from 'shared/assets/icons/edit-major.svg';
 import { useAppDispatch } from 'shared/lib';
 import { Button, ButtonThemeEnum, VStack } from 'shared/ui';
 import { deleteProcOrdersByOrderID } from 'entities/ProcOrders/model/procOrders.services';

@@ -1,7 +1,7 @@
 import { procAuthLoginActions, ProcAuthLoginModal, selectProcAuthData } from 'entities/ProcAuthLogin';
 import { memo, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { ReactComponent as CompanyLogo } from 'shared/assets/icons/some-logo.svg';
+import CompanyLogo from 'shared/assets/icons/some-logo.svg';
 import { classNames, useAppDispatch } from 'shared/lib';
 import { Button, ButtonThemeEnum } from 'shared/ui';
 import classes from './Navbar.module.scss';
@@ -23,7 +23,7 @@ export const Navbar = memo((props: NavbarProps) => {
 	return (
 		<header className={classNames(classes.Navbar, {}, [className])}>
 			<ProcAuthLoginModal isOpen={authModalIsOpen} setIsOpen={() => setAuthModalIsOpen(false)} />
-			<CompanyLogo className={classes.logo}/>
+			<div className={classes.logo}><CompanyLogo /></div>
 			<div className={classes.title}>COMPANY NAME</div>
 			<div className={classes.links}>
 				{!authData

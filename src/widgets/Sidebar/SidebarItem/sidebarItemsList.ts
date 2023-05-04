@@ -1,13 +1,13 @@
 import React from 'react';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { ReactComponent as OrdersIcon } from 'shared/assets/icons/order-list.svg';
-import { ReactComponent as OrderProductsIcon } from 'shared/assets/icons/order-products.svg';
-import { ReactComponent as TemplateIcon } from 'shared/assets/icons/templateIcon.svg';
-import { ReactComponent as NewOrderIcon } from 'shared/assets/icons/new-document.svg';
+import OrdersIcon from 'shared/assets/icons/order-list.svg';
+import OrderProductsIcon from 'shared/assets/icons/order-products.svg';
+import TemplateIcon from 'shared/assets/icons/templateIcon.svg';
+import NewOrderIcon from 'shared/assets/icons/new-document.svg';
 
 export interface SidebarItemType {
     path: string;
-    Icon: React.FC<React.SVGProps<SVGSVGElement>>;
+    Icon: string;
     text: string;
 	isAuthOnly?: boolean;
 }

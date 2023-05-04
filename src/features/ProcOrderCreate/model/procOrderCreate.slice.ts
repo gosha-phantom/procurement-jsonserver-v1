@@ -1,4 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
+
+import { buildSlice } from 'shared/lib';
+
 import { ProcOrderCreateSchema, ProcOrderCreateID } from './procOrderCreate.types';
 import { postProcOrderCreate } from './procOrderCreate.services';
 
@@ -10,10 +13,12 @@ const initialState: ProcOrderCreateSchema = {
 	procOrderPosesBody: undefined,
 };
 
-const procOrderCreateSlice = createSlice({
+const procOrderCreateSlice = buildSlice({
 	name: 'procOrderCreateSlice',
 	initialState,
-	reducers: {},
+	reducers: {
+		clearCreatedOrderID: (state) => { state.procOrderID = undefined; }
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(postProcOrderCreate.pending, (state) => {
@@ -33,5 +38,6 @@ const procOrderCreateSlice = createSlice({
 
 export const {
 	actions: procOrderCreateActions,
-	reducer: procOrderCreateReducer
+	reducer: procOrderCreateReducer,
+	useActions: useProcOrderCreateActions,
 } = procOrderCreateSlice;

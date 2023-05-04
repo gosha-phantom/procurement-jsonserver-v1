@@ -1,7 +1,7 @@
 import { CounterSchema } from 'entities/_Counter';
 import { ProcOrderSchema } from 'entities/ProcOrders';
 import { ProcAuthLoginSchema } from 'entities/ProcAuthLogin';
-import { ProcOrderCreateSchema } from 'entities/ProcOrderCreate';
+import { ProcOrderCreateSchema } from 'features/ProcOrderCreate';
 
 import { ProcOrderStatusSchema } from 'entities/ProcOrderStatus';
 import { WarehouseSchema } from 'entities/Warehouse';

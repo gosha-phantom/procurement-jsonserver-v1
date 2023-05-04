@@ -1,0 +1,16 @@
+.ProcOrderCreateStatus {
+    min-height: 1.5rem;
+}
+
+@keyframes fade {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.element {
+    animation: fade 5s ease forwards;
+}

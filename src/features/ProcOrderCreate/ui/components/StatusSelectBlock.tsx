@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import {
 	getProcOrderStatus,
@@ -15,8 +15,14 @@ const reducers: ReducersList = {
 	procOrderStatus: procOrderStatusReducer
 };
 
-export const StatusSelectBlock = () => {
-	const [value, setValue] = useState<string>('');
+interface StatusSelectBlockProps {
+    value: string;
+    onChange: (value: string) => void;
+}
+
+export const StatusSelectBlock = (props: StatusSelectBlockProps) => {
+	const { value, onChange } = props;
+
 	const dispatch = useAppDispatch();
 	const statusList = useSelector(selectProcOrderStatusAll);
 	const isLoading = useSelectProcOrderStatusIsLoading();
@@ -40,7 +46,7 @@ export const StatusSelectBlock = () => {
 			<SelectBlock
 				label={'Статус заявки'}
 				value={value}
-				onChange={(e) => setValue(e)}
+				onChange={(e) => onChange(e.target.value)}
 				isLoading={isLoading}
 				isError={!!error}
 				error={error}

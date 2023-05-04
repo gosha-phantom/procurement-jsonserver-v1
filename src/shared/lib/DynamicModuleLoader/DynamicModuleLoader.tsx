@@ -25,7 +25,7 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
 
 	useEffect(() => {
 		const mountedReducers = store.reducerManager.getMountedReducers();
-		console.log('DynamicModuleLoader mounted');
+		// console.log('DynamicModuleLoader mounted');
 
 		Object.entries(reducers).forEach(([name, reducer]) => {
 			const mounted = mountedReducers[name as StateSchemaKey];
@@ -36,7 +36,7 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
 		});
 
 		return () => {
-			console.log('DynamicModuleLoader unmounted');
+			// console.log('DynamicModuleLoader unmounted');
 			if (removeAfterUnmount) {
 				Object.entries(reducers).forEach(([name, reducer]) => {
 					store.reducerManager.remove(name as StateSchemaKey);

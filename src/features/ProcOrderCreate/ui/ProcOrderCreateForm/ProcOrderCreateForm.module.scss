@@ -1,5 +1,6 @@
 .ProcOrderCreateForm {
     max-width: 100%;
+    display: flex;
 }
 
 .text {
@@ -12,17 +13,23 @@
 }
 
 .buttons {
-    height: 100%;
     max-width: 10rem;
     margin-right: auto;
 }
 
 .order {
-    height: 100%;
+    align-self: stretch;
+    flex-shrink: 0;
 }
 
 .button {
     max-width: 15rem;
     min-width: 10rem;
     padding: 0.5rem;
+}
+
+.order-poses {
+    flex-grow: 1;
+    width: 100%;
+    background-color: aliceblue;
 }

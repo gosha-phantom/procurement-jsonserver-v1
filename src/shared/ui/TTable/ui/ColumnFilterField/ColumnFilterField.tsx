@@ -1,6 +1,6 @@
 import { Column, Table } from '@tanstack/react-table';
 import { useMemo } from 'react';
-import { ReactComponent as ClearIcon } from 'shared/assets/icons/delete-left.svg';
+import ClearIcon from 'shared/assets/icons/delete-left.svg';
 import { DebouncedInput, SimpleInputThemeEnum, VStack } from 'shared/ui';
 import classes from './ColumnFilterField.module.scss';
 
@@ -76,10 +76,9 @@ export const ColumnFilterField = (props: ColumnFilterFieldProps) => {
 					list={column.id + '_list'}
 				/>
 				<div />
-				<ClearIcon
-					className={classes.deleteIcon}
-					onClick={() => column.setFilterValue('')}
-				/>
+				<div className={classes.deleteIcon} onClick={() => column.setFilterValue('')}>
+					<ClearIcon />
+				</div>
 			</VStack>
 		);
 };

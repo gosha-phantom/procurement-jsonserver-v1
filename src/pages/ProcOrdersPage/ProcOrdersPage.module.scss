@@ -1,11 +1,10 @@
 .ProcOrdersPage {
-    width: 100%;
     padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap:0.5rem;
+    //max-height: 800vh;
+    overflow-y: hidden;
 }
 
 .buttonRefresh {
     padding: 0.25rem 1rem;
+    white-space: nowrap;
 }

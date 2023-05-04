@@ -1,7 +1,7 @@
 import { CellContext } from '@tanstack/react-table';
 import { ProcOrder } from 'entities/ProcOrders';
 import { memo } from 'react';
-import { ReactComponent as DetailIcon } from 'shared/assets/icons/detail.svg';
+import DetailIcon from 'shared/assets/icons/detail.svg';
 import { classNames } from 'shared/lib';
 import { Button, ButtonThemeEnum } from 'shared/ui';
 
@@ -14,10 +14,8 @@ export const ProcOrdersTableDetailButton = memo((props: procOrdersTableDetailBut
 	const { className, cellProps } = props;
 
 	return (
-		<Button theme={ButtonThemeEnum.CLEAR}>
-			<DetailIcon
-				className={classNames('', {}, [className])}
-			/>
+		<Button theme={ButtonThemeEnum.CLEAR} className={classNames('', {}, [className])}>
+			<DetailIcon />
 		</Button>
 
 	);

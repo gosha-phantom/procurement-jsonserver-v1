@@ -14,8 +14,14 @@ const reducers: ReducersList = {
 	warehouses: warehousesReducer
 };
 
-export const WarehouseSelectBlock = () => {
-	const [value, setValue] = useState<string>('');
+interface WarehouseSelectBlockProps {
+    value: string;
+    onChange: (value: string) => void;
+}
+
+export const WarehouseSelectBlock = (props: WarehouseSelectBlockProps) => {
+	const { value, onChange } = props;
+
 	const dispatch = useAppDispatch();
 	const warehouses = useSelectWarehousesAll();
 	const isLoading = useSelectWarehousesIsLoading();
@@ -39,7 +45,7 @@ export const WarehouseSelectBlock = () => {
 			<SelectBlock
 				label={'Склад (куда привезти)'}
 				value={value}
-				onChange={(e) => setValue(e)}
+				onChange={(e) => onChange(e.target.value)}
 				isLoading={isLoading}
 				isError={!!error}
 				error={error}

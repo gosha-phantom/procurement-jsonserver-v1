@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react';
 import { Select, SelectOptionType, SelectThemeEnum, SelectWidthEnum, Text, VStack } from 'shared/ui';
 import classes from './SelectBlock.module.scss';
 
@@ -5,7 +6,7 @@ interface SelectBlockProps {
     label?: string;
     disabled?: boolean;
     value?: string;
-    onChange?: (value: string) => void;
+    onChange?: (value: ChangeEvent<HTMLSelectElement>) => void;
     options: SelectOptionType[];
     isLoading?: boolean;
     isError?: boolean;
@@ -25,6 +26,7 @@ export const SelectBlock = (props: SelectBlockProps) => {
 				className={classes.select}
 				disabled={disabled}
 				theme={SelectThemeEnum.ROUNDED}
+				onChange={onChange}
 				options={options}
 				value={value}
 				width={width}

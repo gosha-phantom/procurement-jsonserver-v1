@@ -15,7 +15,7 @@ export default defineConfig({
 			},
 		}),
 		react(),
-		svgr(),
+		svgr({ exportAsDefault: true }),
 	],
 	resolve: {
 		alias: {

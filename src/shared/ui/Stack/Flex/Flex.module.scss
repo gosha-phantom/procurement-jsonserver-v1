@@ -77,3 +77,8 @@
 .maxWidth {
     width: 100%;
 }
+
+.maxHeight {
+    height: calc(100% - var(--navbar-height));
+    flex-grow: 1;
+}

@@ -12,12 +12,16 @@
 .items {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    margin-top: 3rem;
 }
 
 .collapseBtn {
+    display: flex;
     transition: 0.3s rotate;
-    margin-bottom: 1rem;
-    //position: absolute;
+    align-items: center;
+    margin-top: 0.5rem;
+    position: absolute;
 }
 .collapsed {
     min-width: var(--sidebar-width-collapsed);

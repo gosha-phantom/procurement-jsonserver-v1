@@ -1,6 +1,6 @@
 import { flexRender, Table } from '@tanstack/react-table';
-import { ReactComponent as SortAscIcon } from 'shared/assets/icons/sort-asc-sortable.svg';
-import { ReactComponent as SortDescIcon } from 'shared/assets/icons/sort-desc-sortable.svg';
+import SortAscIcon from 'shared/assets/icons/sort-asc-sortable.svg';
+import SortDescIcon from 'shared/assets/icons/sort-desc-sortable.svg';
 import { HStack } from 'shared/ui';
 import { ColumnFilterField } from 'shared/ui/TTable/ui/ColumnFilterField/ColumnFilterField';
 import classes from './TableComponent.module.scss';

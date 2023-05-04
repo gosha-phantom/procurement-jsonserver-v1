@@ -1,6 +1,6 @@
-import { ComponentType, FormEvent, memo, useCallback, useEffect, useRef, useState } from 'react';
+import { FormEvent, memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { ReactComponent as IRLogoFull } from 'shared/assets/logo/ir-full-logo-color.svg';
+import IRLogoFull from 'shared/assets/logo/ir-full-logo-color.svg';
 import { classNames, useAppDispatch } from 'shared/lib';
 import {
 	Button,
