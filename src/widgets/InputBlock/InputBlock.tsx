@@ -2,11 +2,19 @@ import {
 	DebouncedInput,
 	SimpleInputElements,
 	SimpleInputThemeEnum,
-	SimpleInputWidthEnum,
 	Text,
 	VStack,
 } from 'shared/ui';
+import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './InputBlock.module.scss';
+
+export const enum InputBlockWidthEnum {
+    WIDTH_12 = 'width-12',
+    WIDTH_10 = 'width-10',
+    WIDTH_08 = 'width-08',
+    WIDTH_06 = 'width-06',
+    WIDTH_04 = 'width-04',
+}
 
 interface InputBlockProps {
     label?: string;
@@ -14,12 +22,14 @@ interface InputBlockProps {
     value?: string;
     onChange?: (value: string) => void;
     delay?: number;
-    inputWidth?: SimpleInputWidthEnum;
     type?: string;
     min?: string;
     max?: string;
     as?: SimpleInputElements;
     rows?: number;
+    labelWidth?: InputBlockWidthEnum;
+    inputWidth?: InputBlockWidthEnum;
+    isExpansive?: boolean
 }
 
 export const InputBlock = (props: InputBlockProps) => {
@@ -29,14 +39,16 @@ export const InputBlock = (props: InputBlockProps) => {
 		delay = 500,
 		inputWidth,
 		type = 'text',
-		as = 'input'
+		as = 'input',
+		labelWidth = InputBlockWidthEnum.WIDTH_12,
+		isExpansive = false
 	} = props;
 
 	return (
 		<VStack gap={'8'} maxWidth>
-			<Text className={classes.text}>{label}:</Text>
+			<Text className={classNames(classes.text, { [classes[labelWidth]]: true }, [])}>{label}:</Text>
 			<DebouncedInput
-				className={classes.input}
+				className={classNames(classes.input, { [classes.expansive]: isExpansive }, [])}
 				value={value}
 				theme={SimpleInputThemeEnum.ROUNDED}
 				disabled={disabled}

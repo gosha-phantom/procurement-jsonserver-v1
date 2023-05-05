@@ -1,24 +1,33 @@
+import { measuresReducer } from 'entities/Measure';
 import { procOrderCreateReducer } from 'features/ProcOrderCreate/model/procOrderCreate.slice';
 import { FormEvent, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { ProcOrderPosesUpsertTable } from 'features/ProcOrderPosesUpsert';
 import { useSelectProcAuthData } from 'entities/ProcAuthLogin';
+import { procOrderPosesUpsertReducer } from 'entities/ProcOrderPosesUpsert';
+import {
+	useSelectProcOrderPoses, postProcOrderPosesCreate, useProcOrderPosesUpsertActions,
+	useSelectProcOrderPosesCanClearState, useSelectProcOrderPosesEdit,
+} from 'entities/ProcOrderPosesUpsert';
+import { InputBlock } from 'widgets/InputBlock/InputBlock';
 import { addDaysToDate, classNames, formatDate, useAppDispatch, ReducersList, DynamicModuleLoader } from 'shared/lib';
 import { Button, ButtonThemeEnum, HStack, VStack } from 'shared/ui';
 
-import { InputBlock } from '../components/InputBlock/InputBlock';
 import { StatusSelectBlock } from '../components/StatusSelectBlock';
 import { UserInputBlock } from '../components/UserInputBlock';
 import { WarehouseSelectBlock } from '../components/WarehouseSelectBlock';
 import { ProcOrderCreateStatus } from '../ProcOrderCreateStatus/ProcOrderCreateStatus';
-import { ProcOrderPosesCreateForm } from '../ProcOrderPosesCreateForm/ProcOrderPosesCreateForm';
 import { postProcOrderCreate } from '../../model/procOrderCreate.services';
-import { useSelectProcOrderCreateIsLoading } from '../../model/procOrderCreate.selectors';
+import { useSelectProcOrderCreateIsLoading, useSelectProcOrderCreateID } from '../../model/procOrderCreate.selectors';
+import { useProcOrderCreateActions } from '../../model/procOrderCreate.slice';
 
 import classes from './ProcOrderCreateForm.module.scss';
 
 
 const reducers: ReducersList = {
-	procOrderCreate: procOrderCreateReducer
+	procOrderCreate: procOrderCreateReducer,
+	procOrderPosesUpsert: procOrderPosesUpsertReducer,
+	measures: measuresReducer,
 };
 
 interface ProcOrderCreateFormProps {
@@ -31,6 +40,12 @@ export const ProcOrderCreateForm = memo((props: ProcOrderCreateFormProps) => {
 
 	const dispatch = useAppDispatch();
 	const isLoading = useSelectProcOrderCreateIsLoading();
+	const procOrderPoses = useSelectProcOrderPoses();
+	const procOrderCreateID = useSelectProcOrderCreateID();
+	const { clearCreatedOrderID } = useProcOrderCreateActions();
+	const { clearProcOrderPoses } = useProcOrderPosesUpsertActions();
+	const canClearState = useSelectProcOrderPosesCanClearState();
+	const editProcOrderPoses = useSelectProcOrderPosesEdit();
 
 	const user = useSelectProcAuthData();
 	const [title, setTitle] = useState<string>('');
@@ -59,8 +74,12 @@ export const ProcOrderCreateForm = memo((props: ProcOrderCreateFormProps) => {
 	const onSubmitHandler = (e: FormEvent) => { e.preventDefault(); };
 
 	const isBtnSubmitEnable = useMemo<boolean>(() => {
-		return title.length !== 0;
-	}, [title]);
+		console.log(editProcOrderPoses);
+		if (!editProcOrderPoses) {
+			return title.length !== 0;
+		}
+		return false;
+	}, [title, editProcOrderPoses]);
 
 	const onClearOrderData = useCallback(() => {
 		setTitle('');
@@ -76,16 +95,31 @@ export const ProcOrderCreateForm = memo((props: ProcOrderCreateFormProps) => {
 			statusID: Number(status),
 			warehouseID: Number(warehouse),
 			dateCreated: orderDateCreated.current,
-			dateBuyTill: dateBuyTill.current
+			dateBuyTill: dateBuyTill.current,
 		}));
-		onClearOrderData();
-	}, [dispatch, title, project, description, status, warehouse, user?.ID, onClearOrderData]);
+	}, [dispatch, title, project, description, status, warehouse, user?.ID]);
+
+	useEffect(() => {
+		if (procOrderCreateID) {
+			dispatch(postProcOrderPosesCreate({
+				orderID: procOrderCreateID!.ID,
+				procOrderPoses: procOrderPoses!,
+			}));
+		}
+	}, [dispatch, procOrderPoses, procOrderCreateID]);
+
+	useEffect(() => {
+		if(canClearState) {
+			clearProcOrderPoses();
+			clearCreatedOrderID();
+			onClearOrderData();
+		}
+	}, [canClearState, clearCreatedOrderID, clearProcOrderPoses, onClearOrderData]);
+
 
 	useEffect(() => {
 		dateBuyTill.current = defaultDateBuyTill.current;
 	}, [defaultDateBuyTill]);
-
-	// console.log('isBtnSubmitEnable: ', isBtnSubmitEnable);
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>
@@ -131,7 +165,7 @@ export const ProcOrderCreateForm = memo((props: ProcOrderCreateFormProps) => {
 						>Отклонить заявку</Button>
 					</HStack>
 				</VStack>
-				<ProcOrderPosesCreateForm className={classes['order-poses']}/>
+				<ProcOrderPosesUpsertTable className={classes['order-poses']}/>
 			</HStack>
 		</DynamicModuleLoader>
 	);

@@ -1,5 +1,5 @@
 import { useProcOrderCreateActions } from 'features/ProcOrderCreate/model/procOrderCreate.slice';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { HStack, Loader, LoaderSize, Text, TextSizeEnum, VStack } from 'shared/ui';
 import {
 	useSelectProcOrderCreateError,
@@ -19,20 +19,27 @@ export const ProcOrderCreateStatus = (props: procOrderCreateStatusProps) => {
 	const isLoading = useSelectProcOrderCreateIsLoading();
 	const error = useSelectProcOrderCreateError();
 	const createdOrderID = useSelectProcOrderCreateID();
-	const { clearCreatedOrderID } = useProcOrderCreateActions();
+	// const createdOrderID_ref = useRef<number | null>(null);
 
-	useEffect(() => {
-		let timeout: NodeJS.Timeout;
-		if (createdOrderID) {
-			timeout = setTimeout(() => {
-				console.log(createdOrderID);
-				clearCreatedOrderID();
-			}, 5000);
-		}
+	// useEffect(() => {
+	// 	if (createdOrderID) {
+	// 		createdOrderID_ref.current = createdOrderID.ID;
+	// 	}
+	// }, [createdOrderID]);
+	// const { clearCreatedOrderID } = useProcOrderCreateActions();
 
-		// clear timeout interval
-		return () => clearTimeout(timeout);
-	}, [createdOrderID, clearCreatedOrderID]);
+	// useEffect(() => {
+	// 	let timeout: NodeJS.Timeout;
+	// 	if (createdOrderID) {
+	// 		timeout = setTimeout(() => {
+	// 			console.log(createdOrderID);
+	// 			clearCreatedOrderID();
+	// 		}, 5000);
+	// 	}
+	//
+	// 	// clear timeout interval
+	// 	return () => clearTimeout(timeout);
+	// }, [createdOrderID, clearCreatedOrderID]);
 
 	let content;
 
@@ -51,7 +58,12 @@ export const ProcOrderCreateStatus = (props: procOrderCreateStatusProps) => {
 			break;
 		case false:
 			if (createdOrderID) {
-				content = (<Text className={classes.element} color={'green'} size={TextSizeEnum.MEDIUM}>Заявка {createdOrderID.ID} успешно создана.</Text>);
+				content = (
+					<Text
+						className={classes.element}
+						color={'green'}
+						size={TextSizeEnum.MEDIUM}
+					>Заявка успешно создана.</Text>);
 				break;
 			}
 			content = null;

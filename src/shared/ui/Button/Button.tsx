@@ -22,12 +22,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     size?: ButtonSizeEnum;
     children?: ReactNode;
     disabled?: boolean;
+    maxWidth?: boolean;
 }
 
 export const Button = memo((props: ButtonProps) => {
 	const {
 		className, children,
-		disabled = false, theme = ButtonThemeEnum.OUTLINE, size = ButtonSizeEnum.MEDIUM,
+		disabled = false,
+		theme = ButtonThemeEnum.OUTLINE,
+		size = ButtonSizeEnum.MEDIUM,
+		maxWidth = false,
 		...otherProps
 	} = props;
 
@@ -35,6 +39,7 @@ export const Button = memo((props: ButtonProps) => {
 		[classes[theme]]: true,
 		[classes[size]]: true,
 		[classes.disabled]: disabled,
+		[classes['max-width']]: maxWidth,
 	};
 
 	return (

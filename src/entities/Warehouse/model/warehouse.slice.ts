@@ -1,4 +1,4 @@
-import { createSlice, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
+import { createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
 import { StateSchema } from 'shared/config/stateConfig/StateSchema';
 
 import { buildSlice } from 'shared/lib';

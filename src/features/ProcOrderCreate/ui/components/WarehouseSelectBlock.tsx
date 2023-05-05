@@ -8,7 +8,7 @@ import {
 import { useEffect, useMemo, useState } from 'react';
 import { DynamicModuleLoader, ReducersList, useAppDispatch } from 'shared/lib';
 import { SelectOptionType, SelectWidthEnum } from 'shared/ui';
-import { SelectBlock } from './SelectBlock/SelectBlock';
+import { SelectBlock } from 'widgets/SelectBlock/SelectBlock';
 
 const reducers: ReducersList = {
 	warehouses: warehousesReducer

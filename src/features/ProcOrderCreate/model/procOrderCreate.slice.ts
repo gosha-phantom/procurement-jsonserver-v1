@@ -10,14 +10,15 @@ const initialState: ProcOrderCreateSchema = {
 	isLoading: undefined,
 	procOrderBody: undefined,
 	procOrderID: undefined,
-	procOrderPosesBody: undefined,
 };
 
 const procOrderCreateSlice = buildSlice({
 	name: 'procOrderCreateSlice',
 	initialState,
 	reducers: {
-		clearCreatedOrderID: (state) => { state.procOrderID = undefined; }
+		clearCreatedOrderID: (state) => {
+			state.procOrderID = undefined;
+		}
 	},
 	extraReducers: (builder) => {
 		builder

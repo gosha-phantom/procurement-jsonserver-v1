@@ -1,0 +1,30 @@
+.text {}
+
+.input {
+    resize: none;
+    flex-grow: 0;
+}
+
+.expansive {
+    flex-grow: 1;
+}
+
+.width-12 {
+    min-width: 12rem;
+}
+
+.width-10 {
+    min-width: 10rem;
+}
+
+.width-08 {
+    min-width: 8rem;
+}
+
+.width-06 {
+    min-width: 6rem;
+}
+
+.width-04 {
+    min-width: 4rem;
+}

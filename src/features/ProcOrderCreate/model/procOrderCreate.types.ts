@@ -1,3 +1,5 @@
+import { ProcOrderPosesUpsert } from 'entities/ProcOrderPosesUpsert';
+
 export interface ProcOrderCreateID {
     ID: number;
 }
@@ -11,17 +13,7 @@ export interface ProcOrderCreateBody {
     description: string;
     project: string;
     warehouseID: number;
-}
-
-export interface ProcOrderPosesCreateBody {
-    ID: string;
-    title: string;
-    parameter?: string;
-    measureID: number;
-    quantity: number;
-    article?: string;
-    link?: string;
-    costCentre?: string;
+    procOrderPoses?: ProcOrderPosesUpsert[]
 }
 
 export interface ProcOrderCreateSchema {
@@ -29,6 +21,4 @@ export interface ProcOrderCreateSchema {
     error?: string;
     procOrderID?: ProcOrderCreateID;
     procOrderBody?: ProcOrderCreateBody;
-    procOrderPosesAll?: ProcOrderPosesCreateBody[];
-    procOrderPosesEdited?: ProcOrderPosesCreateBody;
 }

@@ -7,9 +7,4 @@ export const [ useSelectProcOrderCreateError, selectProcOrderCreateError ] =
     buildSelector((state: StateSchema) => state.procOrderCreate?.error);
 export const [ useSelectProcOrderCreateID, selectProcOrderCreateID ] =
     buildSelector((state: StateSchema) => state.procOrderCreate?.procOrderID);
-export const [ useSelectProcOrderPosesAll, selectProcOrderPosesAll ] =
-    buildSelector((state: StateSchema) => state.procOrderCreate?.procOrderPosesAll);
 
-export const selectProcOrderPosesByID = (ID: string) => (state: StateSchema) => {
-	state.procOrderCreate?.procOrderPosesAll?.find(item => item.ID === ID);
-};

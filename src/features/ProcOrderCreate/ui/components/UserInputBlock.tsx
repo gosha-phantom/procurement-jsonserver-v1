@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelectProcAuthData } from 'entities/ProcAuthLogin';
-import { InputBlock } from './InputBlock/InputBlock';
+import { InputBlock } from 'widgets/InputBlock/InputBlock';
 
 
 export const UserInputBlock = () => {
